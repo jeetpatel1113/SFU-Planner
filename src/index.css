@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-slate-900 text-slate-100;
+  }
+}
+
+.react-flow__node {
+  @apply rounded-xl border border-slate-700 bg-slate-800 shadow-lg text-sm transition-all;
+}
+.react-flow__handle {
+  @apply w-3 h-3 bg-indigo-500 border-2 border-slate-900;
+}
