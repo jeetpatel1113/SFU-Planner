@@ -9,6 +9,7 @@ export const useCourseStore = create<PlannerState>()(
       completedCourses: [],
       allCourses: [],
       highlightedCourses: [],
+      aiContext: "",
       semesterPlan: {
         "Fall 2024": [],
         "Spring 2025": [],
@@ -20,6 +21,7 @@ export const useCourseStore = create<PlannerState>()(
       
       setProfile: (profile: UserProfile) => set({ profile }),
       setHighlightedCourses: (courseIds: string[]) => set({ highlightedCourses: courseIds }),
+      setAiContext: (context: string) => set({ aiContext: context }),
       
       initializeCourses: (courses: Course[]) => set({ allCourses: courses }),
       
@@ -77,6 +79,7 @@ export const useCourseStore = create<PlannerState>()(
 
       resetProgress: () => set({
         completedCourses: [],
+        aiContext: "",
         semesterPlan: {
           "Fall 2024": [],
           "Spring 2025": [],

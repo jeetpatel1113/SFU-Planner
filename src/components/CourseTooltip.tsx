@@ -29,8 +29,7 @@ export const CourseTooltipProvider = ({ children }: { children: React.ReactNode 
       });
     };
 
-    // Debounce mouseout to prevent flickering
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
     const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const related = e.relatedTarget as HTMLElement;

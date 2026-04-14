@@ -7,16 +7,69 @@ import { SemesterPlanner } from './components/SemesterPlanner';
 import { OnboardingModal } from './components/OnboardingModal';
 import { AIAdvisor } from './components/AIAdvisor';
 import { CourseTooltipProvider } from './components/CourseTooltip';
-import { LayoutDashboard } from 'lucide-react';
+import { LayoutDashboard, LogOut } from 'lucide-react';
+import { auth, db, logoutUser } from './services/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 function App() {
   const { profile, initializeCourses, seedDraft } = useCourseStore();
 
   useEffect(() => {
-    // In a real app, we'd fetch from SFU API here
     initializeCourses(mockCourses);
     seedDraft(csDegreeTemplate.coreRequirements);
   }, [initializeCourses, seedDraft]);
+
+  // Firebase Auto Sync
+  useEffect(() => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          useCourseStore.setState({
+            profile: data.profile || useCourseStore.getState().profile,
+            aiContext: data.aiContext || '',
+            completedCourses: data.completedCourses || [],
+            semesterPlan: data.semesterPlan || useCourseStore.getState().semesterPlan
+          });
+        } else {
+          // Push initial local state to their new cloud profile
+          const state = useCourseStore.getState();
+          await setDoc(docRef, {
+            profile: state.profile,
+            aiContext: state.aiContext,
+            completedCourses: state.completedCourses,
+            semesterPlan: state.semesterPlan
+          }, { merge: true });
+        }
+      }
+    });
+
+    let syncTimeout: ReturnType<typeof setTimeout>;
+    const unsubscribeStore = useCourseStore.subscribe((state) => {
+      const user = auth.currentUser;
+      if (!user) return;
+      
+      clearTimeout(syncTimeout);
+      syncTimeout = setTimeout(async () => {
+        const docRef = doc(db, 'users', user.uid);
+        await setDoc(docRef, {
+          profile: state.profile,
+          aiContext: state.aiContext,
+          completedCourses: state.completedCourses,
+          semesterPlan: state.semesterPlan
+        }, { merge: true });
+      }, 1500);
+    });
+
+    return () => {
+      unsubscribeAuth();
+      unsubscribeStore();
+      clearTimeout(syncTimeout);
+    };
+  }, []);
 
   return (
     <CourseTooltipProvider>
@@ -41,8 +94,17 @@ function App() {
           <div className="flex items-center gap-4 text-sm font-medium">
             <div className="text-slate-400">
               User: <span className="text-slate-100">{profile.name}</span>
+              <span className="font-semibold text-indigo-400">{profile?.major}</span>
             </div>
-            {/* Progress overview usually goes here */}
+            {auth.currentUser && (
+              <button 
+                onClick={() => logoutUser().then(() => useCourseStore.getState().resetProgress())}
+                className="flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 hover:border-slate-500"
+              >
+                <LogOut size={16} />
+                Sign Out
+              </button>
+            )}
           </div>
         )}
       </header>

@@ -25,6 +25,7 @@ export interface PlannerState {
   semesterPlan: Record<SemesterId, string[]>; // Map semester ID to list of course IDs
   allCourses: Course[];
   highlightedCourses: string[];
+  aiContext: string;
 
   // Actions
   setProfile: (profile: UserProfile) => void;
@@ -32,6 +33,7 @@ export interface PlannerState {
   assignCourseToSemester: (courseId: string, semesterId: SemesterId) => void;
   batchAssignCoursesToSemester: (courseIds: string[], semesterId: SemesterId) => void;
   setHighlightedCourses: (courseIds: string[]) => void;
+  setAiContext: (context: string) => void;
   removeCourseFromSemester: (courseId: string, semesterId: SemesterId) => void;
   initializeCourses: (courses: Course[]) => void;
   seedDraft: (courseIds: string[]) => void;

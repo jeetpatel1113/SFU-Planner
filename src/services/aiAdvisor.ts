@@ -4,9 +4,9 @@ export async function askAIAdvisor(
   userQuery: string,
   catalog: Course[],
   draftCourses: string[],
-  completedCourses: string[]
-): Promise<{ reply: string; suggestedCourses: string[]; highlightedCourses: string[] }> {
-  // @ts-expect-error - Vite handled meta env
+  completedCourses: string[],
+  aiContext: string
+): Promise<{ reply: string; suggestedCourses: string[]; highlightedCourses: string[]; updatedAiContext: string | null }> {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error('Gemini API key not configured. Add VITE_GEMINI_API_KEY to your .env.local file.');
@@ -23,7 +23,12 @@ CRITICAL SFU B.Sc COMP SCI GRADUATION REQUIREMENTS:
 - Standard CMPT Core usually includes: CMPT 105W, 120, 125, MACM 101, MACM 201, CMPT 225, 276/275, 295, 300, 307.
 You MUST actively verify whether the student's selections help fulfill these core B.Sc requirements. Advise them appropriately if their path neglects required upper division or core credits.
 
-Here is the current state of the student:
+Here is your running hidden memory profile about this student (update this as you learn new things about their preferences):
+<Student Background>
+${aiContext || "No background known yet. You are just meeting them."}
+</Student Background>
+
+Here is the current academic state of the student:
 Completed Courses: ${completedCourses.length > 0 ? completedCourses.join(', ') : 'None'}
 Currently Drafted Courses: ${draftCourses.length > 0 ? draftCourses.join(', ') : 'None'}
 
@@ -32,8 +37,9 @@ ${catalogContext}
 
 Instructions:
 1. Provide a friendly, conversational response giving the best academic advice according to the student's question. Keep it concise.
-2. YOU MUST ALWAYS include a JSON block at the very end of your response surrounded by \`\`\`json \`\`\` if you recommend ANY courses to be added to their drafted schedule OR if you want to highlight/focus their attention on specific courses. The JSON must have exactly this format:
+2. YOU MUST ALWAYS include a JSON block at the very end of your response surrounded by \`\`\`json \`\`\` if you recommend ANY courses to be added to their drafted schedule, if you want to highlight/focus their attention on specific courses, OR if you learn something new about their preferences and want to save it to your memory. The JSON must have exactly this format:
 {
+  "updatedAiContext": "Student explicitly prefers avoiding morning classes. Very interested in Data Science concentration. Plans to graduate in 2026.",
   "highlightedCourses": ["CMPT 130"],
   "suggestedCourses": ["CMPT 120", "CMPT 125"]
 }
@@ -63,6 +69,7 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
   // Extract JSON if present
   let suggestedCourses: string[] = [];
   let highlightedCourses: string[] = [];
+  let updatedAiContext: string | null = null;
   let reply = text;
   
   const jsonMatch = text.match(/```json\n([\s\S]*?)\n```/);
@@ -75,6 +82,9 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
       if (Array.isArray(parsed.highlightedCourses)) {
         highlightedCourses = parsed.highlightedCourses;
       }
+      if (typeof parsed.updatedAiContext === 'string') {
+        updatedAiContext = parsed.updatedAiContext;
+      }
       // Remove the json block from the visible reply
       reply = text.replace(jsonMatch[0], '').trim();
     } catch (e) {
@@ -82,5 +92,5 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
     }
   }
 
-  return { reply, suggestedCourses, highlightedCourses };
+  return { reply, suggestedCourses, highlightedCourses, updatedAiContext };
 }

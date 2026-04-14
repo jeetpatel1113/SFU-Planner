@@ -4,7 +4,7 @@ import { askAIAdvisor } from '../services/aiAdvisor';
 import { MessageSquare, X, Send, Bot, User, Loader2 } from 'lucide-react';
 
 export const AIAdvisor = () => {
-  const { allCourses, semesterPlan, completedCourses, batchAssignCoursesToSemester, setHighlightedCourses } = useCourseStore();
+  const { allCourses, semesterPlan, completedCourses, batchAssignCoursesToSemester, setHighlightedCourses, aiContext, setAiContext } = useCourseStore();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{role: 'ai' | 'user', text: string}[]>([
     { role: 'ai', text: "Hi! I'm your SFU computing science AI Advisor. Looking to specialize in AI, Software Engineering, or Systems? Ask me anything!" }
@@ -31,9 +31,14 @@ export const AIAdvisor = () => {
 
     try {
       const draftCourses = semesterPlan["Unassigned"] || [];
-      const { reply, suggestedCourses, highlightedCourses } = await askAIAdvisor(userMsg, allCourses, draftCourses, completedCourses);
+      const { reply, suggestedCourses, highlightedCourses, updatedAiContext } = await askAIAdvisor(userMsg, allCourses, draftCourses, completedCourses, aiContext);
       
       setMessages(prev => [...prev, { role: 'ai', text: reply }]);
+      
+      if (updatedAiContext) {
+        setAiContext(updatedAiContext);
+        console.log("AI Memory Updated:", updatedAiContext);
+      }
       
       if (highlightedCourses && highlightedCourses.length > 0) {
         setHighlightedCourses(highlightedCourses);
