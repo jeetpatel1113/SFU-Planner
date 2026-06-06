@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, deleteUser } from "firebase/auth";
+import { getFirestore, doc, deleteDoc } from "firebase/firestore";
 
 // Initialize Firebase using Vite Env Variables
 const firebaseConfig = {
@@ -29,4 +29,20 @@ export const signInWithGoogle = async () => {
 
 export const logoutUser = async () => {
   await signOut(auth);
+};
+
+export const deleteUserAccount = async () => {
+  const user = auth.currentUser;
+  if (!user) throw new Error("No authenticated user to delete");
+  
+  try {
+    // 1. Delete user data from Firestore
+    await deleteDoc(doc(db, "users", user.uid));
+    
+    // 2. Delete user account from Firebase Auth
+    await deleteUser(user);
+  } catch (err) {
+    console.error("Error deleting user account", err);
+    throw err;
+  }
 };

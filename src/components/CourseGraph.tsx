@@ -20,6 +20,7 @@ import { csDegreeTemplate } from '../data/mockCourses';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { Check, Lock } from 'lucide-react';
+import { useDroppable } from '@dnd-kit/core';
 
 function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
@@ -147,8 +148,18 @@ export const CourseGraph = () => {
     }
   }, [highlightedCourses, rfInstance, nodes]);
 
+  const { setNodeRef, isOver } = useDroppable({
+    id: 'Graph',
+  });
+
   return (
-    <div className="w-full h-full">
+    <div 
+      ref={setNodeRef}
+      className={cn(
+        "w-full h-full relative transition-colors border-4 border-transparent",
+        isOver && "border-indigo-500/50 bg-indigo-500/5"
+      )}
+    >
       <ReactFlow
         nodes={nodes}
         edges={edges}

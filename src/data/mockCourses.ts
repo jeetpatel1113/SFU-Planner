@@ -55,7 +55,10 @@ export const mockCourses: Course[] = [
     "credits": 3,
     "department": "CMPT",
     "level": 100,
-    "prerequisites": []
+    "prerequisites": [],
+    "offeredIn": ["Fall 2026", "Spring 2027"],
+    "instructor": "Dr. Diana Cukierman",
+    "availabilityStatus": "Open"
   },
   {
     "id": "CMPT 125",
@@ -68,7 +71,10 @@ export const mockCourses: Course[] = [
     ],
     "corequisites": [
       "MACM 101"
-    ]
+    ],
+    "offeredIn": ["Fall 2026"],
+    "instructor": "Dr. Nick Sumner",
+    "availabilityStatus": "Waitlist"
   },
   {
     "id": "CMPT 128",
@@ -151,7 +157,10 @@ export const mockCourses: Course[] = [
     "prerequisites": [
       "MACM 101",
       "CMPT 125"
-    ]
+    ],
+    "offeredIn": ["Fall 2026", "Spring 2027"],
+    "instructor": "Dr. Anne Lavergne",
+    "availabilityStatus": "Open"
   },
   {
     "id": "CMPT 263",
@@ -194,7 +203,10 @@ export const mockCourses: Course[] = [
     "prerequisites": [
       "CMPT 225",
       "MACM 101"
-    ]
+    ],
+    "offeredIn": ["Fall 2026"],
+    "instructor": "Dr. Arrvindh Shriraman",
+    "availabilityStatus": "Closed"
   },
   {
     "id": "CMPT 300",
@@ -206,7 +218,10 @@ export const mockCourses: Course[] = [
       "CMPT 225",
       "CMPT 295",
       "MACM 201"
-    ]
+    ],
+    "offeredIn": ["Fall 2026"],
+    "instructor": "Dr. Keval Vora",
+    "availabilityStatus": "Open"
   },
   {
     "id": "CMPT 303",

@@ -6,7 +6,16 @@ export async function askAIAdvisor(
   draftCourses: string[],
   completedCourses: string[],
   aiContext: string
-): Promise<{ reply: string; suggestedCourses: string[]; highlightedCourses: string[]; updatedAiContext: string | null }> {
+): Promise<{ 
+  reply: string; 
+  suggestedCourses: string[]; 
+  highlightedCourses: string[]; 
+  updatedAiContext: string | null;
+  resetPlanner: boolean;
+  removeCourses: string[];
+  markCompleted: string[];
+  unmarkCompleted: string[];
+}> {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error('Gemini API key not configured. Add VITE_GEMINI_API_KEY to your .env.local file.');
@@ -37,13 +46,22 @@ ${catalogContext}
 
 Instructions:
 1. Provide a friendly, conversational response giving the best academic advice according to the student's question. Keep it concise.
-2. YOU MUST ALWAYS include a JSON block at the very end of your response surrounded by \`\`\`json \`\`\` if you recommend ANY courses to be added to their drafted schedule, if you want to highlight/focus their attention on specific courses, OR if you learn something new about their preferences and want to save it to your memory. The JSON must have exactly this format:
+2. YOU MUST ALWAYS include a JSON block at the very end of your response surrounded by \`\`\`json \`\`\` if you recommend ANY courses to be added to their drafted schedule, if you want to highlight/focus their attention on specific courses, if you want to perform actions (like erasing the board, removing courses, or marking courses as completed), OR if you learn something new about their preferences and want to save it to your memory. The JSON must have exactly this format (include only the fields you wish to use, but use these exact keys):
 {
   "updatedAiContext": "Student explicitly prefers avoiding morning classes. Very interested in Data Science concentration. Plans to graduate in 2026.",
   "highlightedCourses": ["CMPT 130"],
-  "suggestedCourses": ["CMPT 120", "CMPT 125"]
+  "suggestedCourses": ["CMPT 120", "CMPT 125"],
+  "removeCourses": ["CMPT 105W"],
+  "markCompleted": ["MACM 101"],
+  "unmarkCompleted": ["CMPT 120"],
+  "resetPlanner": true
 }
-Include "suggestedCourses" only if you want the app to automatically draft those courses into their planner. Include "highlightedCourses" if you strictly want to visually spotlight courses for them to look at on the graph. (You may use both).
+- "suggestedCourses": adds to drafting pool.
+- "highlightedCourses": visually spotlights courses.
+- "removeCourses": removes courses from their planner/draft pool.
+- "markCompleted": sets courses as completed.
+- "unmarkCompleted": removes courses from completed list.
+- "resetPlanner": completely erases all drafted courses and semesters (use this if they ask to clear their planner, start over, or erase all courses).
 Only output course IDs that exist in the catalog above. Do not suggest courses they have already completed or currently have drafted, unless specifically asked.
 `;
 
@@ -69,6 +87,10 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
   // Extract JSON if present
   let suggestedCourses: string[] = [];
   let highlightedCourses: string[] = [];
+  let removeCourses: string[] = [];
+  let markCompleted: string[] = [];
+  let unmarkCompleted: string[] = [];
+  let resetPlanner: boolean = false;
   let updatedAiContext: string | null = null;
   let reply = text;
   
@@ -85,6 +107,18 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
       if (typeof parsed.updatedAiContext === 'string') {
         updatedAiContext = parsed.updatedAiContext;
       }
+      if (Array.isArray(parsed.removeCourses)) {
+        removeCourses = parsed.removeCourses;
+      }
+      if (Array.isArray(parsed.markCompleted)) {
+        markCompleted = parsed.markCompleted;
+      }
+      if (Array.isArray(parsed.unmarkCompleted)) {
+        unmarkCompleted = parsed.unmarkCompleted;
+      }
+      if (typeof parsed.resetPlanner === 'boolean') {
+        resetPlanner = parsed.resetPlanner;
+      }
       // Remove the json block from the visible reply
       reply = text.replace(jsonMatch[0], '').trim();
     } catch (e) {
@@ -92,5 +126,14 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
     }
   }
 
-  return { reply, suggestedCourses, highlightedCourses, updatedAiContext };
+  return { 
+    reply, 
+    suggestedCourses, 
+    highlightedCourses, 
+    updatedAiContext,
+    resetPlanner,
+    removeCourses,
+    markCompleted,
+    unmarkCompleted
+  };
 }

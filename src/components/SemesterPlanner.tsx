@@ -1,17 +1,11 @@
 import { useState } from 'react';
 import { useCourseStore } from '../store/useCourseStore';
 import { type SemesterId } from '../types';
-import { 
-  DndContext, 
-  type DragEndEvent,
-  type DragStartEvent,
-  useDraggable,
-  useDroppable,
-  DragOverlay
-} from '@dnd-kit/core';
-import { Calendar, Trash2 } from 'lucide-react';
+import { useDraggable, useDroppable } from '@dnd-kit/core';
+import { Calendar, Trash2, Plus, Info } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { getFutureSemesters } from '../utils/dateUtils';
 
 function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
@@ -51,8 +45,8 @@ const SemesterColumn = ({ semesterId, courseIds }: { semesterId: SemesterId; cou
   const { removeCourseFromSemester } = useCourseStore();
 
   return (
-    <div className="flex-1 min-w-[200px] bg-slate-900/80 rounded-xl border border-slate-800 p-4 flex flex-col max-h-[300px]">
-      <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-800">
+    <div className="h-full w-full bg-slate-900/80 rounded-xl border border-slate-800 p-3 flex flex-col overflow-hidden">
+      <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-800 shrink-0">
         <h3 className="font-bold text-slate-300 text-sm flex items-center gap-2">
           <Calendar size={14} className="text-indigo-400" />
           {semesterId}
@@ -65,7 +59,7 @@ const SemesterColumn = ({ semesterId, courseIds }: { semesterId: SemesterId; cou
       <div 
         ref={setNodeRef} 
         className={cn(
-          "flex-1 overflow-y-auto custom-scrollbar p-1 rounded-lg transition-colors border-2 border-transparent",
+          "flex-1 overflow-y-auto custom-scrollbar p-1 rounded-lg transition-colors border-2 border-transparent min-h-0",
           isOver && "border-indigo-500/50 bg-indigo-500/5"
         )}
       >
@@ -91,44 +85,27 @@ const SemesterColumn = ({ semesterId, courseIds }: { semesterId: SemesterId; cou
 };
 
 export const SemesterPlanner = () => {
-  const { semesterPlan, assignCourseToSemester, allCourses } = useCourseStore();
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const { semesterPlan, assignCourseWithPrereqsToSemester, allCourses } = useCourseStore();
 
-  // Derive unassigned pool from completedCourses that are not in ANY semester
   const assignedCourses = Object.values(semesterPlan).flat();
-  
-  // Actually, we can add a simple selector manually instead of dragging from another list for Unassigned
   const [selectedCourse, setSelectedCourse] = useState('');
 
   const handleAddCourse = (id: string) => {
     if (!id) return;
-    assignCourseToSemester(id, "Unassigned");
+    assignCourseWithPrereqsToSemester(id, "Unassigned");
     setSelectedCourse('');
   };
 
-  const handleDragStart = (event: DragStartEvent) => {
-    setActiveId(event.active.id as string);
-  };
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-    setActiveId(null);
-    
-    if (over) {
-      assignCourseToSemester(active.id as string, over.id as SemesterId);
-    }
-  };
-
-  const semestersToRender: SemesterId[] = ["Fall 2024", "Spring 2025", "Summer 2025", "Fall 2025"];
+  const semestersToRender: string[] = getFutureSemesters(4);
 
   return (
-    <div className="flex flex-col h-full bg-slate-900/50 p-6">
-      <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2 mb-6">
+    <div className="flex flex-col h-full bg-slate-900/50 p-6 overflow-hidden">
+      <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2 mb-4 shrink-0">
         <Calendar size={18} className="text-pink-400" />
         Semester Planner
       </h2>
 
-      <div className="mb-6 flex gap-2">
+      <div className="mb-4 flex gap-2 shrink-0">
         <select 
           value={selectedCourse} 
           onChange={e => setSelectedCourse(e.target.value)}
@@ -150,28 +127,19 @@ export const SemesterPlanner = () => {
         </button>
       </div>
 
-      <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        
-        {/* Unassigned Pool */}
-        <div className="mb-6">
-          <SemesterColumn semesterId={"Unassigned"} courseIds={semesterPlan["Unassigned"] || []} />
-        </div>
 
-        {/* Semesters Grid */}
-        <div className="grid grid-cols-2 gap-4 flex-1 overflow-y-auto">
-          {semestersToRender.map(semId => (
-            <SemesterColumn key={semId} semesterId={semId} courseIds={semesterPlan[semId]} />
-          ))}
-        </div>
 
-        <DragOverlay>
-          {activeId ? (
-             <div className="p-3 rounded-lg bg-indigo-600 shadow-xl text-white font-bold opacity-90 scale-105 cursor-grabbing">
-               {activeId}
-             </div>
-          ) : null}
-        </DragOverlay>
-      </DndContext>
+      {/* Unassigned Pool */}
+      <div className="mb-4 h-32 shrink-0">
+        <SemesterColumn semesterId={"Unassigned"} courseIds={semesterPlan["Unassigned"] || []} />
+      </div>
+
+      {/* Semesters Grid */}
+      <div className="grid grid-cols-2 grid-rows-2 gap-4 flex-1 min-h-0">
+        {semestersToRender.map(semId => (
+          <SemesterColumn key={semId} semesterId={semId} courseIds={semesterPlan[semId] || []} />
+        ))}
+      </div>
     </div>
   );
 };

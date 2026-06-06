@@ -4,7 +4,7 @@ import { askAIAdvisor } from '../services/aiAdvisor';
 import { MessageSquare, X, Send, Bot, User, Loader2 } from 'lucide-react';
 
 export const AIAdvisor = () => {
-  const { allCourses, semesterPlan, completedCourses, batchAssignCoursesToSemester, setHighlightedCourses, aiContext, setAiContext } = useCourseStore();
+  const { allCourses, semesterPlan, completedCourses, batchAssignCoursesToSemester, setHighlightedCourses, aiContext, setAiContext, resetProgress, removeCourses, setCourseCompletion } = useCourseStore();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{role: 'ai' | 'user', text: string}[]>([
     { role: 'ai', text: "Hi! I'm your SFU computing science AI Advisor. Looking to specialize in AI, Software Engineering, or Systems? Ask me anything!" }
@@ -31,7 +31,7 @@ export const AIAdvisor = () => {
 
     try {
       const draftCourses = semesterPlan["Unassigned"] || [];
-      const { reply, suggestedCourses, highlightedCourses, updatedAiContext } = await askAIAdvisor(userMsg, allCourses, draftCourses, completedCourses, aiContext);
+      const { reply, suggestedCourses, highlightedCourses, updatedAiContext, resetPlanner, removeCourses: coursesToRemove, markCompleted, unmarkCompleted } = await askAIAdvisor(userMsg, allCourses, draftCourses, completedCourses, aiContext);
       
       setMessages(prev => [...prev, { role: 'ai', text: reply }]);
       
@@ -46,9 +46,29 @@ export const AIAdvisor = () => {
         setHighlightedCourses([]); // clear highlights if the AI didn't specify any new ones
       }
 
-      if (suggestedCourses.length > 0) {
-        batchAssignCoursesToSemester(suggestedCourses, "Unassigned");
-        setMessages(prev => [...prev, { role: 'ai', text: `✨ I automatically added ${suggestedCourses.join(', ')} to your drafting pool!` }]);
+      if (resetPlanner) {
+        resetProgress();
+        setMessages(prev => [...prev, { role: 'ai', text: `✨ I have completely cleared your planner as requested.` }]);
+      } else {
+        if (coursesToRemove && coursesToRemove.length > 0) {
+          removeCourses(coursesToRemove);
+          setMessages(prev => [...prev, { role: 'ai', text: `✨ I removed ${coursesToRemove.join(', ')} from your plan.` }]);
+        }
+
+        if (suggestedCourses && suggestedCourses.length > 0) {
+          batchAssignCoursesToSemester(suggestedCourses, "Unassigned");
+          setMessages(prev => [...prev, { role: 'ai', text: `✨ I automatically added ${suggestedCourses.join(', ')} to your drafting pool!` }]);
+        }
+
+        if (markCompleted && markCompleted.length > 0) {
+          setCourseCompletion(markCompleted, true);
+          setMessages(prev => [...prev, { role: 'ai', text: `✨ I marked ${markCompleted.join(', ')} as completed.` }]);
+        }
+
+        if (unmarkCompleted && unmarkCompleted.length > 0) {
+          setCourseCompletion(unmarkCompleted, false);
+          setMessages(prev => [...prev, { role: 'ai', text: `✨ I unmarked ${unmarkCompleted.join(', ')} from your completed courses.` }]);
+        }
       }
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : String(err);
