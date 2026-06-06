@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useCourseStore } from '../store/useCourseStore';
 import { type SemesterId } from '../types';
 import { useDraggable, useDroppable } from '@dnd-kit/core';
-import { Calendar, Trash2, Plus, Info } from 'lucide-react';
+import { Calendar, Trash2 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { getFutureSemesters } from '../utils/dateUtils';
