@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import { useCourseStore } from '../store/useCourseStore';
 import { type SemesterId } from '../types';
 import { useDraggable, useDroppable } from '@dnd-kit/core';
@@ -12,18 +12,29 @@ function cn(...inputs: (string | undefined | null | false)[]) {
 
 // Draggable Course Item
 const DraggableCourse = ({ courseId }: { courseId: string }) => {
+  const nodeRef = useRef<HTMLDivElement>(null);
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: courseId,
   });
   
-  const style = transform ? {
-    transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-  } : undefined;
+  const setRefs = (node: HTMLDivElement | null) => {
+    nodeRef.current = node;
+    setNodeRef(node);
+  };
+
+  useLayoutEffect(() => {
+    if (nodeRef.current) {
+      if (transform) {
+        nodeRef.current.style.transform = `translate3d(${transform.x}px, ${transform.y}px, 0)`;
+      } else {
+        nodeRef.current.style.transform = '';
+      }
+    }
+  }, [transform]);
 
   return (
     <div
-      ref={setNodeRef}
-      style={style}
+      ref={setRefs}
       {...listeners}
       {...attributes}
       className={cn(

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useCourseStore } from '../store/useCourseStore';
 import { PrerequisiteRenderer } from './PrerequisiteRenderer';
@@ -66,6 +66,7 @@ export const CourseTooltipProvider = ({ children }: { children: React.ReactNode 
 const TooltipContent = ({ courseId, x, y }: { courseId: string, x: number, y: number }) => {
   const [description, setDescription] = useState<string | null>(tooltipCache[courseId] || null);
   const [loading, setLoading] = useState(!tooltipCache[courseId]);
+  const tooltipRef = useRef<HTMLDivElement>(null);
   
   // Get course data from store for prerequisites
   const courseData = useCourseStore(state => state.allCourses.find(c => c.id === courseId));
@@ -113,10 +114,17 @@ const TooltipContent = ({ courseId, x, y }: { courseId: string, x: number, y: nu
   const safeX = Math.min(x + 20, window.innerWidth - 340);
   const safeY = Math.min(y + 20, window.innerHeight - 150);
 
+  useLayoutEffect(() => {
+    if (tooltipRef.current) {
+      tooltipRef.current.style.left = `${safeX}px`;
+      tooltipRef.current.style.top = `${safeY}px`;
+    }
+  }, [safeX, safeY]);
+
   return (
     <div 
+      ref={tooltipRef}
       className="fixed z-[9999] pointer-events-none w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-700 shadow-2xl rounded-xl p-4 text-sm text-slate-200 transition-opacity duration-200"
-      style={{ left: safeX, top: safeY }}
     >
       <div className="flex items-center gap-2 mb-2">
         <h4 className="font-bold text-indigo-400">{courseId}</h4>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { useCourseStore } from '../store/useCourseStore';
 import { isCourseUnlocked } from '../utils/courseLogic';
 import { Check, Lock, BookOpen, Search, Loader2, Plus } from 'lucide-react';
@@ -34,14 +34,24 @@ const DraggableCourseListCard = ({
     data: { courseId: course.id }
   });
 
-  const style = transform ? {
-    transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-  } : undefined;
+  const nodeRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (nodeRef.current) {
+      if (transform) {
+        nodeRef.current.style.transform = `translate3d(${transform.x}px, ${transform.y}px, 0)`;
+      } else {
+        nodeRef.current.style.transform = '';
+      }
+    }
+  }, [transform]);
 
   return (
     <div 
-      ref={setNodeRef}
-      style={style}
+      ref={(node) => {
+        setNodeRef(node);
+        nodeRef.current = node;
+      }}
       {...listeners}
       {...attributes}
       data-course-id={course.id}
@@ -114,6 +124,14 @@ export const CourseList = () => {
   const { allCourses, completedCourses, waivedCourses, highlightedCourses, semesterPlan, setResolvingPrereqsForCourseId, addCourseDynamically, assignCourseToSemester } = useCourseStore();
   const [search, setSearch] = useState('');
   const [menu, setMenu] = useState<{ x: number, y: number, courseId: string } | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (menuRef.current && menu) {
+      menuRef.current.style.top = `${menu.y}px`;
+      menuRef.current.style.left = `${menu.x}px`;
+    }
+  }, [menu]);
   
   // Async Search State
   const [suggestions, setSuggestions] = useState<SFUDepartmentCourse[]>([]);
@@ -294,8 +312,8 @@ export const CourseList = () => {
             onContextMenu={(e) => { e.preventDefault(); setMenu(null); }} 
           />
           <div 
+            ref={menuRef}
             className="fixed z-[1000] bg-slate-900 border border-slate-700 rounded-lg shadow-2xl py-1 w-64 overflow-hidden"
-            style={{ top: menu.y, left: menu.x }}
           >
             <div className="px-3 py-2 border-b border-slate-800 bg-slate-800/50">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">{menu.courseId} Options</span>

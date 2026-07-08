@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { Trash2, Unlock } from 'lucide-react';
 
 interface NodeContextMenuProps {
@@ -13,10 +13,19 @@ interface NodeContextMenuProps {
 }
 
 export const NodeContextMenu: React.FC<NodeContextMenuProps> = ({ x, y, courseId, onRemove, onRemoveWithChildren, onWaive, onAddWithPrereqs, onClose }) => {
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (menuRef.current) {
+      menuRef.current.style.top = `${y}px`;
+      menuRef.current.style.left = `${x}px`;
+    }
+  }, [x, y]);
+
   return (
     <div 
+      ref={menuRef}
       className="fixed z-[1000] bg-slate-900 border border-slate-700 rounded-lg shadow-2xl py-1 w-64 overflow-hidden"
-      style={{ top: y, left: x }}
     >
       <div className="px-3 py-2 border-b border-slate-800 bg-slate-800/50">
         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">{courseId} Options</span>
