@@ -128,11 +128,13 @@ export const PrerequisiteResolverModal = () => {
         }
       }
 
-      if (validIds.length > 0) {
-        // We pass the new course IDs and let the store handle appending them to Unassigned.
-        batchAssignCoursesToSemester([...validIds, resolvingPrereqsForCourseId], "Unassigned");
-      } else {
-        assignCourseToSemester(resolvingPrereqsForCourseId, "Unassigned");
+      if (resolvingPrereqsForCourseId) {
+        if (validIds.length > 0) {
+          // We pass the new course IDs and let the store handle appending them to Unassigned.
+          batchAssignCoursesToSemester([...validIds, resolvingPrereqsForCourseId], "Unassigned");
+        } else {
+          assignCourseToSemester(resolvingPrereqsForCourseId, "Unassigned");
+        }
       }
 
       setResolvingPrereqsForCourseId(null);
