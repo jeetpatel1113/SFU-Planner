@@ -15,6 +15,7 @@ export async function askAIAdvisor(
   removeCourses: string[];
   markCompleted: string[];
   unmarkCompleted: string[];
+  pathway: string[][] | null;
 }> {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
@@ -62,6 +63,7 @@ Instructions:
 - "markCompleted": sets courses as completed.
 - "unmarkCompleted": removes courses from completed list.
 - "resetPlanner": completely erases all drafted courses and semesters (use this if they ask to clear their planner, start over, or erase all courses).
+- "pathway": an array of 8 arrays, representing the courses they should take in Semesters 1 through 8. Only include this if they explicitly ask you to generate their full degree pathway.
 Only output course IDs that exist in the catalog above. Do not suggest courses they have already completed or currently have drafted, unless specifically asked.
 `;
 
@@ -92,6 +94,7 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
   let unmarkCompleted: string[] = [];
   let resetPlanner: boolean = false;
   let updatedAiContext: string | null = null;
+  let pathway: string[][] | null = null;
   let reply = text;
   
   const jsonMatch = text.match(/```json\n([\s\S]*?)\n```/);
@@ -119,6 +122,9 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
       if (typeof parsed.resetPlanner === 'boolean') {
         resetPlanner = parsed.resetPlanner;
       }
+      if (Array.isArray(parsed.pathway)) {
+        pathway = parsed.pathway;
+      }
       // Remove the json block from the visible reply
       reply = text.replace(jsonMatch[0], '').trim();
     } catch (e) {
@@ -134,6 +140,7 @@ Only output course IDs that exist in the catalog above. Do not suggest courses t
     resetPlanner,
     removeCourses,
     markCompleted,
-    unmarkCompleted
+    unmarkCompleted,
+    pathway
   };
 }

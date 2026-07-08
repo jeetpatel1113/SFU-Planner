@@ -1,0 +1,3804 @@
+[
+  {
+    "id": "CMPT 105W",
+    "title": "Social Issues and Communication Strategies in Computing Science",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 120",
+    "title": "Introduction to Computing Science and Programming I",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 125",
+    "title": "Introduction to Computing Science and Programming II",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 100,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 120",
+          "CMPT 130"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 130",
+    "title": "Introduction to Computer Programming I",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100",
+      "MATH 150",
+      "MATH 151",
+      "MATH 154",
+      "MATH 157"
+    ]
+  },
+  {
+    "id": "CMPT 201",
+    "title": "Systems Programming",
+    "credits": 4,
+    "department": "CMPT",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 125",
+          "CMPT 135"
+        ]
+      },
+      "MACM 101"
+    ]
+  },
+  {
+    "id": "CMPT 210",
+    "title": "Probability and Computing",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 200,
+    "prerequisites": [
+      "MACM 101",
+      "MATH 152",
+      {
+        "OR": [
+          "CMPT 125",
+          "CMPT 135"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 240",
+          "MATH 232"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 213",
+    "title": "Object Oriented Design in Java",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 200,
+    "prerequisites": [
+      "CMPT 225"
+    ]
+  },
+  {
+    "id": "CMPT 225",
+    "title": "Data Structures and Programming",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          {
+            "AND": [
+              "MACM 101",
+              {
+                "AND": [
+                  "CMPT 125",
+                  {
+                    "OR": [
+                      "CMPT 129",
+                      "CMPT 135"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "AND": [
+              "ENSC 251",
+              "ENSC 252"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 263",
+    "title": "Introduction to Human-Centered Computing",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 125",
+          "CMPT 135"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 272",
+    "title": "Web I - Client-side Development",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 120",
+          "CMPT 130",
+          "CMPT 128"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 276",
+    "title": "Introduction to Software Engineering",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 200,
+    "prerequisites": [
+      "CMPT 225",
+      {
+        "OR": [
+          "MACM 101",
+          {
+            "AND": [
+              "ENSC 251",
+              "ENSC 252"
+            ]
+          }
+        ]
+      },
+      {
+        "OR": [
+          "MATH 151",
+          "MATH 150"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 154",
+          "MATH 157",
+          "MATH 150"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 295",
+    "title": "Introduction to Computer Systems",
+    "credits": 4,
+    "department": "CMPT",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          {
+            "AND": [
+              "MACM 101",
+              {
+                "OR": [
+                  "CMPT 125",
+                  "CMPT 135"
+                ]
+              }
+            ]
+          },
+          {
+            "AND": [
+              "MATH 151",
+              "CMPT 102"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 307",
+    "title": "Data Structures and Algorithms",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225",
+      {
+        "OR": [
+          "MACM 201",
+          "CMPT 210"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 150",
+          "MATH 151"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 232",
+          "MATH 240"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 154",
+          "MATH 157",
+          "MATH 151"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 310",
+    "title": "Introduction to Artificial Intelligence",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225",
+      {
+        "OR": [
+          "MACM 101",
+          {
+            "AND": [
+              "ENSC 251",
+              "ENSC 252"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 318",
+    "title": "Special Topics in Computing Science",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225"
+    ]
+  },
+  {
+    "id": "CMPT 340",
+    "title": "Biomedical Computing",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 125",
+      "CMPT 126",
+      "CMPT 128",
+      "CMPT 135",
+      "CMPT 102"
+    ]
+  },
+  {
+    "id": "CMPT 353",
+    "title": "Computational Data Science",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225",
+      {
+        "AND": [
+          "BUS 232",
+          "STAT 201",
+          "STAT 203",
+          "STAT 205",
+          "STAT 270",
+          "STAT 271",
+          "ENSC 280",
+          "MSE 210",
+          "SEE 241"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 354",
+    "title": "Database Systems I",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225",
+      {
+        "OR": [
+          "MACM 101",
+          {
+            "AND": [
+              "ENSC 251",
+              "ENSC 252"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 361",
+    "title": "Introduction to Visual Computing",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225",
+      {
+        "OR": [
+          "MATH 232",
+          "MATH 240"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 362",
+    "title": "Mobile Applications Programming and Design",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225"
+    ]
+  },
+  {
+    "id": "CMPT 365",
+    "title": "Multimedia Systems",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225"
+    ]
+  },
+  {
+    "id": "CMPT 371",
+    "title": "Data Communications and Networking",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225",
+      {
+        "OR": [
+          "MATH 151",
+          "MATH 150"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 154",
+          "MATH 157"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 373",
+    "title": "Software Development Methods",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 276",
+          "CMPT 275"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 376W",
+    "title": "Professional Responsibility and Technical Writing",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 105W",
+      {
+        "OR": [
+          "CMPT 275",
+          "CMPT 276"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 383",
+    "title": "Comparative Programming Languages",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 225",
+      {
+        "OR": [
+          "MACM 101",
+          {
+            "AND": [
+              "ENSC 251",
+              "ENSC 252"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 405",
+    "title": "Design and Analysis of Computing Algorithms",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 307"
+    ]
+  },
+  {
+    "id": "CMPT 409",
+    "title": "Special Topics in Theoretical Computing Science",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 307"
+    ]
+  },
+  {
+    "id": "CMPT 410",
+    "title": "Machine Learning",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 310",
+      "MACM 316"
+    ]
+  },
+  {
+    "id": "CMPT 412",
+    "title": "Computer Vision",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 361",
+      "MATH 152"
+    ]
+  },
+  {
+    "id": "CMPT 415",
+    "title": "Special Research Projects",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 416",
+    "title": "Special Research Projects",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 417",
+    "title": "Intelligent Systems",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 225"
+    ]
+  },
+  {
+    "id": "CMPT 426",
+    "title": "Practicum I",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 275",
+          "CMPT 276"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 427",
+    "title": "Practicum II",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 426"
+    ]
+  },
+  {
+    "id": "CMPT 428",
+    "title": "Practicum III",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 427"
+    ]
+  },
+  {
+    "id": "CMPT 429",
+    "title": "Practicum IV",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 428"
+    ]
+  },
+  {
+    "id": "CMPT 430",
+    "title": "Practicum V",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 429"
+    ]
+  },
+  {
+    "id": "CMPT 431",
+    "title": "Distributed Systems",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 300",
+      "CMPT 371"
+    ]
+  },
+  {
+    "id": "CMPT 441",
+    "title": "Computational Biology",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 307"
+    ]
+  },
+  {
+    "id": "CMPT 450",
+    "title": "Computer Architecture",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 295"
+    ]
+  },
+  {
+    "id": "CMPT 454",
+    "title": "Database Systems II",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 300",
+      "CMPT 354"
+    ]
+  },
+  {
+    "id": "CMPT 459",
+    "title": "Special Topics in Database Systems",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 354"
+    ]
+  },
+  {
+    "id": "CMPT 464",
+    "title": "Geometric Modelling in Computer Graphics",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 361",
+      "MACM 316"
+    ]
+  },
+  {
+    "id": "CMPT 469",
+    "title": "Special Topics in Computer Graphics",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 361"
+    ]
+  },
+  {
+    "id": "CMPT 473",
+    "title": "Software Testing, Reliability and Security",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 275",
+          "CMPT 276"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 475",
+    "title": "Requirements Engineering",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 275",
+          "CMPT 276"
+        ]
+      },
+      {
+        "OR": [
+          "MACM 201",
+          "CMPT 210"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 477",
+    "title": "Introduction to Formal Verification",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "CMPT 275",
+          "CMPT 276"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CMPT 479",
+    "title": "Special Topics in Computing Systems",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 300"
+    ]
+  },
+  {
+    "id": "CMPT 489",
+    "title": "Special Topics in Programming Languages",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 383"
+    ]
+  },
+  {
+    "id": "CMPT 494",
+    "title": "Software Systems Program Capstone Project I",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 495",
+    "title": "Software Systems Capstone Project II",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": [
+      "CMPT 494"
+    ]
+  },
+  {
+    "id": "CMPT 496",
+    "title": "Directed Studies",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 497",
+    "title": "Dual Degree Program Capstone Project",
+    "credits": 6,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 498",
+    "title": "Honours Research Project",
+    "credits": 6,
+    "department": "CMPT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 626",
+    "title": "Graduate Co-op I",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 600,
+    "prerequisites": [
+      "THE 700"
+    ]
+  },
+  {
+    "id": "CMPT 627",
+    "title": "Graduate Co-op II",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 600,
+    "prerequisites": [
+      "CMPT 626"
+    ]
+  },
+  {
+    "id": "CMPT 629",
+    "title": "Graduate Project",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 600,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 631",
+    "title": "Industrial Internship",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 600,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 705",
+    "title": "Design and Analysis of Algorithms",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 711",
+    "title": "Bioinformatics Algorithms",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 713",
+    "title": "Natural Language Processing",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 726",
+    "title": "Machine Learning",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 729",
+    "title": "Reinforcement Learning",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 732",
+    "title": "Big Data Lab I",
+    "credits": 6,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 741",
+    "title": "Data Mining",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 742",
+    "title": "Visual Computing Lab I",
+    "credits": 6,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 750",
+    "title": "Computer Architecture",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": [
+      "CMPT 295"
+    ]
+  },
+  {
+    "id": "CMPT 762",
+    "title": "Computer Vision",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 764",
+    "title": "Geometric Modelling in Computer Graphics",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": [
+      "CMPT 361",
+      "MACM 316"
+    ]
+  },
+  {
+    "id": "CMPT 766",
+    "title": "Computer Animation and Simulation",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 777",
+    "title": "Formal Verification",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 782",
+    "title": "Cybersecurity Lab I",
+    "credits": 6,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 786",
+    "title": "Cloud and Network Security",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 789",
+    "title": "Applied Cryptography",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 827",
+    "title": "Intelligent Systems",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 863",
+    "title": "Advanced Topics in Human-Computer Interaction",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 889",
+    "title": "Special Topics in Interdisciplinary Computing",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 894",
+    "title": "Directed Reading",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 895",
+    "title": "Master Program Extended Essay",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 896",
+    "title": "MSc Course Option Portfolio",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 897",
+    "title": "MSc Project",
+    "credits": 10,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 898",
+    "title": "MSc Thesis",
+    "credits": 18,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 899",
+    "title": "PhD Thesis",
+    "credits": 18,
+    "department": "CMPT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 980",
+    "title": "Special Topics in Computing Science",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 900,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 981",
+    "title": "Special Topics in Theoretical Computing Science",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 900,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 982",
+    "title": "Special Topics in Networks and Systems",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 900,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 983",
+    "title": "Special Topics in Artificial Intelligence",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 900,
+    "prerequisites": []
+  },
+  {
+    "id": "CMPT 985",
+    "title": "Special Topics in Graphics, HCI, Visualization, Vision, Multimedia",
+    "credits": 3,
+    "department": "CMPT",
+    "level": 900,
+    "prerequisites": []
+  },
+  {
+    "id": "MACM 101",
+    "title": "Discrete Mathematics I",
+    "credits": 3,
+    "department": "MACM",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100",
+      "MATH 150",
+      "MATH 151",
+      "MATH 154",
+      "MATH 157"
+    ]
+  },
+  {
+    "id": "MACM 201",
+    "title": "Discrete Mathematics II",
+    "credits": 3,
+    "department": "MACM",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "MACM 101",
+          {
+            "AND": [
+              "ENSC 251",
+              {
+                "OR": [
+                  "MATH 232",
+                  "MATH 240"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MACM 204",
+    "title": "Computing with Calculus",
+    "credits": 2,
+    "department": "MACM",
+    "level": 200,
+    "prerequisites": [
+      "CMPT 102",
+      "CMPT 120",
+      "CMPT 126",
+      {
+        "OR": [
+          "CMPT 128",
+          "CMPT 130"
+        ]
+      },
+      "MATH 251"
+    ]
+  },
+  {
+    "id": "MACM 316",
+    "title": "Numerical Analysis I",
+    "credits": 3,
+    "department": "MACM",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 152",
+          "MATH 155",
+          "MATH 158"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 232",
+          "MATH 240"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MACM 416",
+    "title": "Numerical Analysis II",
+    "credits": 3,
+    "department": "MACM",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 310"
+        ]
+      },
+      "MACM 316"
+    ]
+  },
+  {
+    "id": "MATH 100",
+    "title": "Precalculus",
+    "credits": 3,
+    "department": "MATH",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100"
+    ]
+  },
+  {
+    "id": "MATH 130",
+    "title": "Geometry for Computer Graphics",
+    "credits": 3,
+    "department": "MATH",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100"
+    ]
+  },
+  {
+    "id": "MATH 150",
+    "title": "Calculus I with Review",
+    "credits": 4,
+    "department": "MATH",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100"
+    ]
+  },
+  {
+    "id": "MATH 151",
+    "title": "Calculus I",
+    "credits": 3,
+    "department": "MATH",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100"
+    ]
+  },
+  {
+    "id": "MATH 152",
+    "title": "Calculus II",
+    "credits": 3,
+    "department": "MATH",
+    "level": 100,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 150",
+          "MATH 151"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 154",
+          "MATH 157"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 154",
+    "title": "Mathematics for the Life Sciences I",
+    "credits": 3,
+    "department": "MATH",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100"
+    ]
+  },
+  {
+    "id": "MATH 157",
+    "title": "Calculus I for the Social Sciences",
+    "credits": 3,
+    "department": "MATH",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100"
+    ]
+  },
+  {
+    "id": "MATH 190",
+    "title": "Principles of Mathematics for Teachers",
+    "credits": 4,
+    "department": "MATH",
+    "level": 100,
+    "prerequisites": [
+      "MATH 150",
+      "MATH 151",
+      {
+        "OR": [
+          "MATH 154",
+          "MATH 157"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 232",
+    "title": "Applied Linear Algebra",
+    "credits": 3,
+    "department": "MATH",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 150",
+          "MATH 151",
+          "MACM 101"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 154",
+          "MATH 157"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 240",
+    "title": "Algebra I: Linear Algebra",
+    "credits": 3,
+    "department": "MATH",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 150",
+          "MATH 151",
+          "MACM 101"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 154",
+          "MATH 157"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 251",
+    "title": "Calculus III",
+    "credits": 3,
+    "department": "MATH",
+    "level": 200,
+    "prerequisites": [
+      "MATH 152",
+      {
+        "OR": [
+          "MATH 155",
+          "MATH 158",
+          "MATH 232",
+          "MATH 251"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 260",
+    "title": "Introduction to Ordinary Differential Equations",
+    "credits": 3,
+    "department": "MATH",
+    "level": 200,
+    "prerequisites": [
+      "MATH 152",
+      {
+        "OR": [
+          "MATH 155",
+          "MATH 158"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 232",
+          "MATH 240"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 292",
+    "title": "Selected Topics in Mathematics",
+    "credits": 3,
+    "department": "MATH",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 303",
+    "title": "Mathematical Journeys III",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 152",
+          "MATH 155",
+          "MATH 158"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 232",
+          "MATH 240"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 308",
+    "title": "Linear Optimization",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      "MATH 150",
+      "MATH 151",
+      "MATH 154",
+      "MATH 157",
+      {
+        "OR": [
+          "MATH 240",
+          "MATH 232"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 309",
+    "title": "Continuous Optimization",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 232",
+          "MATH 240"
+        ]
+      },
+      "MATH 251"
+    ]
+  },
+  {
+    "id": "MATH 322",
+    "title": "Complex Variables",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      "MATH 251"
+    ]
+  },
+  {
+    "id": "MATH 336",
+    "title": "Job Practicum I",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 337",
+    "title": "Job Practicum II",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      "MATH 336"
+    ]
+  },
+  {
+    "id": "MATH 340",
+    "title": "Algebra II: Rings and Fields",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 240",
+          "MATH 232"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 343",
+    "title": "Applied Discrete Mathematics",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      "MACM 201"
+    ]
+  },
+  {
+    "id": "MATH 345",
+    "title": "Introduction to Graph Theory",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      "MACM 201"
+    ]
+  },
+  {
+    "id": "MATH 360",
+    "title": "Introduction to Biomathematics",
+    "credits": 3,
+    "department": "MATH",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 155"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 408",
+    "title": "Discrete Optimization",
+    "credits": 3,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      "MATH 308"
+    ]
+  },
+  {
+    "id": "MATH 418",
+    "title": "Partial Differential Equations",
+    "credits": 3,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 310"
+        ]
+      },
+      "MATH 314",
+      "MATH 320",
+      "MATH 322",
+      "PHYS 384",
+      {
+        "OR": [
+          "MATH 252",
+          "MATH 254"
+        ]
+      },
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 310"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 436",
+    "title": "Job Practicum III",
+    "credits": 3,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      "MATH 337"
+    ]
+  },
+  {
+    "id": "MATH 437",
+    "title": "Job Practicum IV",
+    "credits": 3,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      "MATH 436"
+    ]
+  },
+  {
+    "id": "MATH 447",
+    "title": "Coding Theory",
+    "credits": 3,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 340",
+          "MATH 332"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MATH 450",
+    "title": "Introduction to Topology",
+    "credits": 3,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      "MATH 242",
+      "MATH 340"
+    ]
+  },
+  {
+    "id": "MATH 480W",
+    "title": "The Art and Craft of Problem Solving",
+    "credits": 3,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      "MACM 201",
+      "MATH 240",
+      "MATH 242",
+      "MATH 251",
+      "MATH 252",
+      "MACM 203",
+      "MACM 204"
+    ]
+  },
+  {
+    "id": "MATH 486",
+    "title": "Job Practicum V",
+    "credits": 3,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      "MATH 437"
+    ]
+  },
+  {
+    "id": "MATH 498",
+    "title": "Communication and Research Skills in the Mathematical Sciences",
+    "credits": 1,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 499W",
+    "title": "Honours Research Project",
+    "credits": 5,
+    "department": "MATH",
+    "level": 400,
+    "prerequisites": [
+      "MATH 498"
+    ]
+  },
+  {
+    "id": "MATH 604",
+    "title": "Geometry",
+    "credits": 4,
+    "department": "MATH",
+    "level": 600,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 708",
+    "title": "Discrete Optimization",
+    "credits": 3,
+    "department": "MATH",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 716",
+    "title": "Numerical Analysis II",
+    "credits": 3,
+    "department": "MATH",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 718",
+    "title": "Partial Differential Equations",
+    "credits": 3,
+    "department": "MATH",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 747",
+    "title": "Coding Theory",
+    "credits": 3,
+    "department": "MATH",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 750",
+    "title": "Introduction to Topology",
+    "credits": 3,
+    "department": "MATH",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 818",
+    "title": "Algebra and Geometry",
+    "credits": 4,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 875",
+    "title": "PhD Preliminary Examination",
+    "credits": 3,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": [
+      "MATH 876"
+    ]
+  },
+  {
+    "id": "MATH 876",
+    "title": "PhD Comprehensive Examination",
+    "credits": 3,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": [
+      "MATH 875"
+    ]
+  },
+  {
+    "id": "MATH 877",
+    "title": "Supplementary Reading",
+    "credits": 1,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 879",
+    "title": "PhD Thesis Proposal",
+    "credits": 3,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 880",
+    "title": "MSc Project",
+    "credits": 6,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 890",
+    "title": "Co-op I",
+    "credits": 3,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 891",
+    "title": "Co-op II",
+    "credits": 3,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 894",
+    "title": "Reading",
+    "credits": 2,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 895",
+    "title": "Reading",
+    "credits": 4,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 898",
+    "title": "MSc Thesis",
+    "credits": 18,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MATH 899",
+    "title": "PhD Thesis",
+    "credits": 18,
+    "department": "MATH",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 100",
+    "title": "Chance and Data Analysis",
+    "credits": 3,
+    "department": "STAT",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 180",
+    "title": "Career Development Seminar for Statistics and Actuarial Science",
+    "credits": 1,
+    "department": "STAT",
+    "level": 100,
+    "prerequisites": [
+      "STAT 270"
+    ]
+  },
+  {
+    "id": "STAT 201",
+    "title": "Statistics for the Life Sciences",
+    "credits": 3,
+    "department": "STAT",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 203",
+    "title": "Introduction to Statistics for the Social Sciences",
+    "credits": 3,
+    "department": "STAT",
+    "level": 200,
+    "prerequisites": [
+      "SA 255",
+      "CRIM 220",
+      "POL 200W"
+    ]
+  },
+  {
+    "id": "STAT 260",
+    "title": "Introductory R for Data Science",
+    "credits": 3,
+    "department": "STAT",
+    "level": 200,
+    "prerequisites": [
+      "STAT 201",
+      "STAT 203",
+      "STAT 205",
+      "STAT 270",
+      "BUS 232",
+      "ECON 233",
+      "POL 201"
+    ]
+  },
+  {
+    "id": "STAT 270",
+    "title": "Introduction to Probability and Statistics",
+    "credits": 3,
+    "department": "STAT",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 152",
+          "MATH 155",
+          "MATH 158"
+        ]
+      },
+      "STAT 100"
+    ]
+  },
+  {
+    "id": "STAT 271",
+    "title": "Probability and Statistics for Computing Science",
+    "credits": 3,
+    "department": "STAT",
+    "level": 200,
+    "prerequisites": [
+      "CMPT 210"
+    ]
+  },
+  {
+    "id": "STAT 285",
+    "title": "Intermediate Probability and Statistics",
+    "credits": 3,
+    "department": "STAT",
+    "level": 200,
+    "prerequisites": [
+      "STAT 270",
+      "MATH 152",
+      "MATH 155",
+      "MATH 158"
+    ]
+  },
+  {
+    "id": "STAT 302",
+    "title": "Analysis of Experimental and Observational Data",
+    "credits": 3,
+    "department": "STAT",
+    "level": 300,
+    "prerequisites": [
+      "STAT 201",
+      "STAT 203",
+      "STAT 205",
+      "STAT 270",
+      "BUS 232",
+      "ECON 233"
+    ]
+  },
+  {
+    "id": "STAT 305",
+    "title": "Introduction to Biostatistical Methods for Health Sciences",
+    "credits": 3,
+    "department": "STAT",
+    "level": 300,
+    "prerequisites": [
+      "STAT 201",
+      "STAT 203",
+      "STAT 205",
+      "STAT 270",
+      "BUS 232",
+      "ECON 233"
+    ]
+  },
+  {
+    "id": "STAT 310",
+    "title": "Introduction to Data Science for the Social Sciences",
+    "credits": 4,
+    "department": "STAT",
+    "level": 300,
+    "prerequisites": [
+      "STAT 201",
+      "STAT 203",
+      "STAT 205",
+      "STAT 270",
+      "BUS 232",
+      "ECON 233",
+      "POL 201"
+    ]
+  },
+  {
+    "id": "STAT 330",
+    "title": "Introduction to Mathematical Statistics",
+    "credits": 3,
+    "department": "STAT",
+    "level": 300,
+    "prerequisites": [
+      "STAT 285",
+      "MATH 251",
+      {
+        "OR": [
+          "MATH 232",
+          "MATH 240"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STAT 336",
+    "title": "Job Practicum I",
+    "credits": 3,
+    "department": "STAT",
+    "level": 300,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 337",
+    "title": "Job Practicum II",
+    "credits": 3,
+    "department": "STAT",
+    "level": 300,
+    "prerequisites": [
+      "STAT 336"
+    ]
+  },
+  {
+    "id": "STAT 342",
+    "title": "Introduction to Statistical Computing and Exploratory Data Analysis - SAS",
+    "credits": 2,
+    "department": "STAT",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "STAT 285",
+          "STAT 302",
+          "STAT 305",
+          "ECON 333"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STAT 350",
+    "title": "Linear Models in Applied Statistics",
+    "credits": 3,
+    "department": "STAT",
+    "level": 300,
+    "prerequisites": [
+      "STAT 260",
+      "STAT 285",
+      "MATH 251",
+      {
+        "OR": [
+          "MATH 232",
+          "MATH 240"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STAT 430",
+    "title": "Statistical Design and Analysis of Experiments",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": [
+      "STAT 350"
+    ]
+  },
+  {
+    "id": "STAT 436",
+    "title": "Job Practicum III",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": [
+      "STAT 337"
+    ]
+  },
+  {
+    "id": "STAT 437",
+    "title": "Job Practicum IV",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": [
+      "STAT 436"
+    ]
+  },
+  {
+    "id": "STAT 438",
+    "title": "Job Practicum V",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": [
+      "STAT 437"
+    ]
+  },
+  {
+    "id": "STAT 440",
+    "title": "Learning from Big Data",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": [
+      "STAT 350",
+      "STAT 341",
+      "STAT 260",
+      "CMPT 225",
+      "STAT 240"
+    ]
+  },
+  {
+    "id": "STAT 450",
+    "title": "Statistical Theory",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": [
+      "STAT 330"
+    ]
+  },
+  {
+    "id": "STAT 452",
+    "title": "Statistical Learning and Prediction",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": [
+      "STAT 260",
+      {
+        "OR": [
+          "STAT 302",
+          "STAT 305",
+          "STAT 350",
+          "ECON 333"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STAT 485",
+    "title": "Applied Time Series Analysis",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": [
+      "STAT 260",
+      {
+        "OR": [
+          "STAT 285",
+          "STAT 302",
+          "STAT 305",
+          "ECON 333"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STAT 490",
+    "title": "Selected Topics in Probability and Statistics",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 495",
+    "title": "Directed Studies in Probability and Statistics",
+    "credits": 3,
+    "department": "STAT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 605",
+    "title": "Biostatistical Methods",
+    "credits": 3,
+    "department": "STAT",
+    "level": 600,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 642",
+    "title": "Introduction to Statistical Computing and Exploratory Data Analysis - SAS",
+    "credits": 2,
+    "department": "STAT",
+    "level": 600,
+    "prerequisites": [
+      {
+        "OR": [
+          "STAT 285",
+          "STAT 302",
+          "STAT 305",
+          "STAT 604",
+          "STAT 605",
+          "ECON 333"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STAT 652",
+    "title": "Statistical Learning and Prediction",
+    "credits": 3,
+    "department": "STAT",
+    "level": 600,
+    "prerequisites": [
+      {
+        "OR": [
+          "STAT 302",
+          "STAT 305",
+          "STAT 350",
+          "STAT 604",
+          "STAT 605",
+          "ECON 333"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STAT 685",
+    "title": "Applied Time Series Analysis",
+    "credits": 3,
+    "department": "STAT",
+    "level": 600,
+    "prerequisites": [
+      {
+        "OR": [
+          "STAT 302",
+          "STAT 305",
+          "STAT 350",
+          "STAT 604",
+          "STAT 605",
+          "ECON 333"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STAT 811",
+    "title": "Statistical Consulting I",
+    "credits": 2,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 812",
+    "title": "Statistical Consulting II",
+    "credits": 2,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 830",
+    "title": "Statistical Theory I",
+    "credits": 4,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": [
+      "STAT 450"
+    ]
+  },
+  {
+    "id": "STAT 850",
+    "title": "Linear Models and Applications",
+    "credits": 4,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": [
+      "STAT 350"
+    ]
+  },
+  {
+    "id": "STAT 852",
+    "title": "Modern Methods in Applied Statistics",
+    "credits": 4,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": [
+      "STAT 830",
+      "STAT 853"
+    ]
+  },
+  {
+    "id": "STAT 880",
+    "title": "Co-op I",
+    "credits": 3,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 881",
+    "title": "Co-op II",
+    "credits": 3,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 882",
+    "title": "Co-op III",
+    "credits": 3,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 894",
+    "title": "Reading",
+    "credits": 2,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 895",
+    "title": "Reading",
+    "credits": 4,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 898",
+    "title": "MSc Project",
+    "credits": 10,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "STAT 899",
+    "title": "PhD Thesis",
+    "credits": 18,
+    "department": "STAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 100",
+    "title": "Engineering Graphics and Design",
+    "credits": 3,
+    "department": "MSE",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 101W",
+    "title": "Process, Form, and Convention in Professional Genres",
+    "credits": 3,
+    "department": "MSE",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 103",
+    "title": "Statics and Dynamics",
+    "credits": 3,
+    "department": "MSE",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 110",
+    "title": "Mechatronics Design I",
+    "credits": 3,
+    "department": "MSE",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 112",
+    "title": "Mechatronic Design Studio I",
+    "credits": 3,
+    "department": "MSE",
+    "level": 100,
+    "prerequisites": [
+      "CMPT 120"
+    ]
+  },
+  {
+    "id": "MSE 193",
+    "title": "Optional Job Practicum",
+    "credits": 3,
+    "department": "MSE",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 220",
+    "title": "Engineering Materials",
+    "credits": 3,
+    "department": "MSE",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "CHEM 120",
+          "CHEM 121"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MSE 221",
+    "title": "Statics and Strength of Materials",
+    "credits": 4,
+    "department": "MSE",
+    "level": 200,
+    "prerequisites": [
+      "PHYS 140",
+      "MATH 152"
+    ]
+  },
+  {
+    "id": "MSE 250",
+    "title": "Electric Circuits",
+    "credits": 4,
+    "department": "MSE",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "PHYS 141",
+          {
+            "AND": [
+              "PHYS 121",
+              "PHYS 131"
+            ]
+          }
+        ]
+      },
+      "MATH 232",
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 310",
+          "MATH 310"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MSE 293",
+    "title": "Industrial Internship I",
+    "credits": 3,
+    "department": "MSE",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 294",
+    "title": "Special Internship I",
+    "credits": 3,
+    "department": "MSE",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 310",
+    "title": "Sensors and Actuators",
+    "credits": 3,
+    "department": "MSE",
+    "level": 300,
+    "prerequisites": [
+      "MSE 221",
+      "MSE 222",
+      "MSE 251",
+      "MSE 280"
+    ]
+  },
+  {
+    "id": "MSE 320",
+    "title": "Machine Design",
+    "credits": 4,
+    "department": "MSE",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MSE 100",
+          "ENSC 104"
+        ]
+      },
+      {
+        "OR": [
+          "MSE 220",
+          "ENSC 231"
+        ]
+      },
+      {
+        "OR": [
+          "MSE 221",
+          "ENSC 281"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MSE 321",
+    "title": "Engineering Thermodynamics and Heat Transfer",
+    "credits": 4,
+    "department": "MSE",
+    "level": 300,
+    "prerequisites": [
+      "MATH 251",
+      "MSE 223"
+    ]
+  },
+  {
+    "id": "MSE 352",
+    "title": "Digital Logic and Microcontrollers",
+    "credits": 4,
+    "department": "MSE",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 130",
+      {
+        "OR": [
+          "MSE 251",
+          "ENSC 226"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MSE 380",
+    "title": "Systems Modeling and Simulation",
+    "credits": 3,
+    "department": "MSE",
+    "level": 300,
+    "prerequisites": [
+      "MSE 221",
+      "MSE 222",
+      "MSE 280"
+    ]
+  },
+  {
+    "id": "MSE 393",
+    "title": "Industrial Internship II",
+    "credits": 3,
+    "department": "MSE",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MSE 293",
+          "MSE 294"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MSE 394",
+    "title": "Special Internship II",
+    "credits": 3,
+    "department": "MSE",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MSE 293",
+          "MSE 294"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MSE 422",
+    "title": "Fuel Cell Systems",
+    "credits": 3,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      "MSE 223",
+      "MSE 321"
+    ]
+  },
+  {
+    "id": "MSE 460",
+    "title": "Precision AgriTech Engineering",
+    "credits": 3,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      "MSE 310",
+      "MSE 360"
+    ]
+  },
+  {
+    "id": "MSE 486",
+    "title": "Directed Studies in Mechatronic Systems Engineering",
+    "credits": 4,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      "OF 100"
+    ]
+  },
+  {
+    "id": "MSE 487",
+    "title": "Directed Studies in Mechatronic Systems Engineering",
+    "credits": 4,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      "OF 100"
+    ]
+  },
+  {
+    "id": "MSE 489",
+    "title": "Directed Studies in Mechatronic Systems Engineering",
+    "credits": 3,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      "OF 100"
+    ]
+  },
+  {
+    "id": "MSE 490",
+    "title": "Special Topic in Mechatronic Systems Engineering",
+    "credits": 3,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 493",
+    "title": "Industrial Internship III",
+    "credits": 3,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "MSE 393",
+          "MSE 394"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MSE 494",
+    "title": "Special Internship III",
+    "credits": 3,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "MSE 393",
+          "MSE 394"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MSE 495",
+    "title": "Special Project Laboratory",
+    "credits": 2,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 496",
+    "title": "Special Project Laboratory",
+    "credits": 3,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 497",
+    "title": "Special Project Laboratory",
+    "credits": 4,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 498",
+    "title": "Mechatronic Systems Engineering Thesis Proposal",
+    "credits": 3,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      "EAST 100"
+    ]
+  },
+  {
+    "id": "MSE 499",
+    "title": "Mechatronic Systems Engineering  Undergraduate Thesis",
+    "credits": 9,
+    "department": "MSE",
+    "level": 400,
+    "prerequisites": [
+      "MSE 498"
+    ]
+  },
+  {
+    "id": "MSE 722",
+    "title": "Fuel Cell Systems",
+    "credits": 3,
+    "department": "MSE",
+    "level": 700,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 795",
+    "title": "Industrial Internship",
+    "credits": 3,
+    "department": "MSE",
+    "level": 700,
+    "prerequisites": [
+      "THE 700"
+    ]
+  },
+  {
+    "id": "MSE 804",
+    "title": "Graduate Seminar",
+    "credits": 3,
+    "department": "MSE",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 811",
+    "title": "Microdevice Engineering and Characterization",
+    "credits": 3,
+    "department": "MSE",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 890",
+    "title": "PhD Qualifying Examination",
+    "credits": 3,
+    "department": "MSE",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 891",
+    "title": "Directed Studies I",
+    "credits": 3,
+    "department": "MSE",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 892",
+    "title": "Directed Studies II",
+    "credits": 3,
+    "department": "MSE",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 898",
+    "title": "MASc Thesis",
+    "credits": 18,
+    "department": "MSE",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "MSE 899",
+    "title": "PhD Thesis",
+    "credits": 18,
+    "department": "MSE",
+    "level": 800,
+    "prerequisites": [
+      "MSE 890"
+    ]
+  },
+  {
+    "id": "MSE 910",
+    "title": "Industrial Internet of Things",
+    "credits": 3,
+    "department": "MSE",
+    "level": 900,
+    "prerequisites": [
+      "MSE 310"
+    ]
+  },
+  {
+    "id": "MSE 980",
+    "title": "Industry 4.0",
+    "credits": 3,
+    "department": "MSE",
+    "level": 900,
+    "prerequisites": [
+      "MSE 380"
+    ]
+  },
+  {
+    "id": "ENSC 100W",
+    "title": "Engineering, Science and Society",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 105W",
+    "title": "Process, Form, and Convention in Professional Genres",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 120",
+    "title": "Introduction to Electronics Laboratory Instruments Operation and Measurement Techniques",
+    "credits": 2,
+    "department": "ENSC",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 151",
+    "title": "Introduction to Software Development for Engineers",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 100,
+    "prerequisites": [
+      "MATH 100",
+      "MATH 150",
+      "MATH 151",
+      "MATH 154",
+      "MATH 157"
+    ]
+  },
+  {
+    "id": "ENSC 194",
+    "title": "Optional Job Practicum",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 195",
+    "title": "Industrial Internship I",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 196",
+    "title": "Special Internship I",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 204",
+    "title": "Graphical Communication for Engineering",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 220",
+    "title": "Electric Circuits I",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "PHYS 121",
+          "PHYS 126",
+          "PHYS 141"
+        ]
+      },
+      "ENSC 120",
+      "MATH 232",
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 310"
+        ]
+      },
+      "MATH 260"
+    ]
+  },
+  {
+    "id": "ENSC 225",
+    "title": "Microelectronics I",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 220",
+          "MSE 250"
+        ]
+      },
+      "MATH 232",
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 310"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 251",
+    "title": "Software Design and Analysis for Engineers",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 151",
+          "CMPT 135",
+          {
+            "AND": [
+              "CMPT 125",
+              "CMPT 127"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 252",
+    "title": "Fundamentals of Digital Logic & Design",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 151",
+          "CMPT 125",
+          "CMPT 126",
+          "CMPT 135"
+        ]
+      },
+      "ENSC 252"
+    ]
+  },
+  {
+    "id": "ENSC 295",
+    "title": "Industrial Internship II",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 195",
+          "ENSC 196"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 296",
+    "title": "Special Internship II",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 200,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 195",
+          "ENSC 196"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 316",
+    "title": "Engineering Electromagnetics I",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": [
+      "MATH 251",
+      {
+        "OR": [
+          "ENSC 220",
+          "MSE 250"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 324",
+    "title": "Electronic Devices",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 220",
+          "MSE 250"
+        ]
+      },
+      "MATH 232",
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 310"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 350",
+    "title": "Digital Systems Design",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          {
+            "AND": [
+              "ENSC 215",
+              {
+                "OR": [
+                  "ENSC 250",
+                  "CMPT 250"
+                ]
+              }
+            ]
+          },
+          {
+            "AND": [
+              "ENSC 252",
+              "ENSC 254"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 351",
+    "title": "Embedded and Real Time System Software",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          {
+            "AND": [
+              "ENSC 151",
+              "ENSC 215",
+              "ENSC 250"
+            ]
+          },
+          "ENSC 254",
+          {
+            "AND": [
+              "CMPT 225",
+              {
+                "OR": [
+                  "CMPT 250",
+                  "CMPT 295"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "ENSC 351"
+    ]
+  },
+  {
+    "id": "ENSC 370",
+    "title": "Biomedical Engineering Directions",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 380",
+    "title": "Linear Systems",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": [
+      "ENSC 180",
+      "ENSC 220",
+      {
+        "OR": [
+          "MATH 260",
+          "MATH 310"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 385",
+    "title": "Statics and Strength of Materials",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "PHYS 120",
+          "PHYS 140"
+        ]
+      },
+      "MATH 152"
+    ]
+  },
+  {
+    "id": "ENSC 395",
+    "title": "Industrial Internship III",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 295",
+          "ENSC 296"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 396",
+    "title": "Special Internship III",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 295",
+          "ENSC 296"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 403",
+    "title": "Directed Studies in Engineering Science",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 400,
+    "prerequisites": [
+      "OF 100"
+    ]
+  },
+  {
+    "id": "ENSC 440",
+    "title": "Capstone B: Engineering Design Project",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 400,
+    "prerequisites": [
+      "ENSC 405W"
+    ]
+  },
+  {
+    "id": "ENSC 453",
+    "title": "Programming for Heterogeneous Computing Systems",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 400,
+    "prerequisites": [
+      "ENSC 350",
+      "ENSC 351"
+    ]
+  },
+  {
+    "id": "ENSC 477",
+    "title": "Biomedical Image Acquisition",
+    "credits": 4,
+    "department": "ENSC",
+    "level": 400,
+    "prerequisites": [
+      {
+        "OR": [
+          "ENSC 380",
+          "MSE 280"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENSC 498",
+    "title": "Engineering Science Thesis Proposal",
+    "credits": 1,
+    "department": "ENSC",
+    "level": 400,
+    "prerequisites": [
+      "EAST 115"
+    ]
+  },
+  {
+    "id": "ENSC 499",
+    "title": "Engineering Science Undergraduate Thesis",
+    "credits": 9,
+    "department": "ENSC",
+    "level": 400,
+    "prerequisites": [
+      "ENSC 498"
+    ]
+  },
+  {
+    "id": "ENSC 704",
+    "title": "Industrial Internship",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 700,
+    "prerequisites": [
+      "THE 800"
+    ]
+  },
+  {
+    "id": "ENSC 801",
+    "title": "Linear Systems Theory",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 835",
+    "title": "Communication Networks",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": [
+      "ENSC 427"
+    ]
+  },
+  {
+    "id": "ENSC 870",
+    "title": "MEng Course Option Portfolio",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": [
+      "ENSC 870"
+    ]
+  },
+  {
+    "id": "ENSC 880",
+    "title": "PhD Qualifying Examination",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 890",
+    "title": "Advanced Robotics: Mechanics and Control",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": [
+      "ENSC 488"
+    ]
+  },
+  {
+    "id": "ENSC 891",
+    "title": "Directed Studies I",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 892",
+    "title": "Directed Studies II",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 894",
+    "title": "Special Topics II",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 895",
+    "title": "Special Topics III",
+    "credits": 3,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 896",
+    "title": "MEng Project (Completion)",
+    "credits": 6,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 897",
+    "title": "MEng Project",
+    "credits": 6,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 898",
+    "title": "MASc Thesis",
+    "credits": 18,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "ENSC 899",
+    "title": "PhD Thesis",
+    "credits": 18,
+    "department": "ENSC",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 100",
+    "title": "Digital Image Design",
+    "credits": 3,
+    "department": "IAT",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 102",
+    "title": "Graphic Design",
+    "credits": 3,
+    "department": "IAT",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 103W",
+    "title": "Design Communication and Collaboration",
+    "credits": 3,
+    "department": "IAT",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 106",
+    "title": "Spatial Thinking and Communicating",
+    "credits": 3,
+    "department": "IAT",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 110",
+    "title": "Visual Communication Design",
+    "credits": 3,
+    "department": "IAT",
+    "level": 100,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 167",
+    "title": "Digital Games: Genre, Structure, Programming and Play",
+    "credits": 3,
+    "department": "IAT",
+    "level": 100,
+    "prerequisites": [
+      "CMPT 120"
+    ]
+  },
+  {
+    "id": "IAT 201",
+    "title": "Human-Computer Interaction and Cognition",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 202",
+    "title": "New Media Images",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": [
+      "IAT 100"
+    ]
+  },
+  {
+    "id": "IAT 206W",
+    "title": "Media Across Cultures",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": [
+      "IAT 103W"
+    ]
+  },
+  {
+    "id": "IAT 210",
+    "title": "Introduction to Game Studies: Theory and Design",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 222",
+    "title": "Interactive Arts",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 233",
+    "title": "Spatial Design",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": [
+      "IAT 102",
+      "IAT 106"
+    ]
+  },
+  {
+    "id": "IAT 235",
+    "title": "Information Design",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": [
+      "IAT 102"
+    ]
+  },
+  {
+    "id": "IAT 265",
+    "title": "Multimedia Programming for Art and Design",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": [
+      "IAT 167",
+      "MATH 130",
+      "MACM 101",
+      "MATH 150",
+      "MATH 151",
+      "MATH 154",
+      "MATH 157"
+    ]
+  },
+  {
+    "id": "IAT 267",
+    "title": "Introduction to Technological Systems",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": [
+      "IAT 167",
+      "MATH 130",
+      "MACM 101",
+      "MATH 150",
+      "MATH 151",
+      "MATH 154",
+      "MATH 157",
+      "IAT 265"
+    ]
+  },
+  {
+    "id": "IAT 271",
+    "title": "Co-op Practicum I",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 272",
+    "title": "Co-op Practicum II",
+    "credits": 3,
+    "department": "IAT",
+    "level": 200,
+    "prerequisites": [
+      "IAT 271"
+    ]
+  },
+  {
+    "id": "IAT 309W",
+    "title": "Writing Methods for Research",
+    "credits": 4,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 206W"
+    ]
+  },
+  {
+    "id": "IAT 312",
+    "title": "Foundations of Game Design",
+    "credits": 4,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 265"
+    ]
+  },
+  {
+    "id": "IAT 313",
+    "title": "Narrative and New Media",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 333",
+    "title": "Interaction Design Methods",
+    "credits": 4,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 235"
+    ]
+  },
+  {
+    "id": "IAT 334",
+    "title": "Interface Design",
+    "credits": 4,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 235"
+    ]
+  },
+  {
+    "id": "IAT 336",
+    "title": "Materials in Design",
+    "credits": 4,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 233"
+    ]
+  },
+  {
+    "id": "IAT 339",
+    "title": "Web Design and Development",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 235",
+      "IAT 265"
+    ]
+  },
+  {
+    "id": "IAT 340",
+    "title": "Sound Design",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 202"
+    ]
+  },
+  {
+    "id": "IAT 343",
+    "title": "Animation",
+    "credits": 4,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      {
+        "OR": [
+          "MATH 130",
+          "MACM 101",
+          "MATH 150",
+          "MATH 151",
+          "MATH 154",
+          "MATH 157"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IAT 344",
+    "title": "Moving Images",
+    "credits": 4,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 202"
+    ]
+  },
+  {
+    "id": "IAT 351",
+    "title": "Advanced Human-Computer Interaction",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 201",
+      "IAT 265",
+      "IAT 267"
+    ]
+  },
+  {
+    "id": "IAT 355",
+    "title": "Introduction to Visual Analytics",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 201",
+      "IAT 267",
+      {
+        "OR": [
+          "IAT 265",
+          "CMPT 225"
+        ]
+      },
+      "IAT 235"
+    ]
+  },
+  {
+    "id": "IAT 359",
+    "title": "Mobile Computing",
+    "credits": 4,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 265"
+    ]
+  },
+  {
+    "id": "IAT 360",
+    "title": "Exploring Artificial Intelligence: Its Use, Concepts, and Impact",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "CMPT 120",
+      "IAT 265",
+      "IAT 267"
+    ]
+  },
+  {
+    "id": "IAT 373",
+    "title": "Co-op Practicum III",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 272"
+    ]
+  },
+  {
+    "id": "IAT 374",
+    "title": "Co-op Practicum IV",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 373"
+    ]
+  },
+  {
+    "id": "IAT 375",
+    "title": "Co-op Practicum V",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": [
+      "IAT 374"
+    ]
+  },
+  {
+    "id": "IAT 386",
+    "title": "Directed Studies",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 387",
+    "title": "Directed Studies",
+    "credits": 3,
+    "department": "IAT",
+    "level": 300,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 410",
+    "title": "Advanced Game Design",
+    "credits": 4,
+    "department": "IAT",
+    "level": 400,
+    "prerequisites": [
+      "IAT 265",
+      "IAT 312"
+    ]
+  },
+  {
+    "id": "IAT 431",
+    "title": "Speculative Design",
+    "credits": 4,
+    "department": "IAT",
+    "level": 400,
+    "prerequisites": [
+      "IAT 309W",
+      "IAT 333"
+    ]
+  },
+  {
+    "id": "IAT 432",
+    "title": "Design Evaluation",
+    "credits": 3,
+    "department": "IAT",
+    "level": 400,
+    "prerequisites": [
+      "IAT 334",
+      "IAT 201",
+      "IAT 235"
+    ]
+  },
+  {
+    "id": "IAT 438",
+    "title": "User Experience Design",
+    "credits": 6,
+    "department": "IAT",
+    "level": 400,
+    "prerequisites": [
+      "IAT 309W",
+      "IAT 333"
+    ]
+  },
+  {
+    "id": "IAT 445",
+    "title": "Immersive Environments",
+    "credits": 4,
+    "department": "IAT",
+    "level": 400,
+    "prerequisites": [
+      "IAT 343"
+    ]
+  },
+  {
+    "id": "IAT 486",
+    "title": "Directed Studies",
+    "credits": 3,
+    "department": "IAT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 487",
+    "title": "Directed Studies",
+    "credits": 3,
+    "department": "IAT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 488",
+    "title": "Directed Studies",
+    "credits": 3,
+    "department": "IAT",
+    "level": 400,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 803",
+    "title": "Science, Technology & Culture",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 804",
+    "title": "Foundations of Research Design for Human-Centred Design of Interactive Technologies",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 805",
+    "title": "Research Colloquium",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 806",
+    "title": "Interdisciplinary Design Approaches to Computing",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 848",
+    "title": "Mediated, Virtual, and Augmented Reality",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": [
+      "IAT 806",
+      {
+        "OR": [
+          "IAT 801",
+          "IAT 802",
+          "IAT 804",
+          "IAT 834"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IAT 871",
+    "title": "Directed Readings I",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 881",
+    "title": "Special Topics I",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 888",
+    "title": "Special Topics VIII",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 890",
+    "title": "PhD Comprehensive Exam",
+    "credits": 3,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 897",
+    "title": "MA Thesis",
+    "credits": 18,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 898",
+    "title": "MSc Thesis",
+    "credits": 18,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  },
+  {
+    "id": "IAT 899",
+    "title": "PhD Thesis",
+    "credits": 18,
+    "department": "IAT",
+    "level": 800,
+    "prerequisites": []
+  }
+]

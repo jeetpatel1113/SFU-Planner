@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { useCourseStore } from '../store/useCourseStore';
 import { motion } from 'framer-motion';
 import { signInWithGoogle } from '../services/firebase';
+import { degreeTemplates } from '../data/degreeTemplates';
 import { GraduationCap, Sparkles, BookOpen, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export const AuthPage = () => {
   const { setProfile } = useCourseStore();
   const [name, setName] = useState('');
   const [major, setMajor] = useState('');
+  const [year, setYear] = useState(new Date().getFullYear().toString());
+  const [season, setSeason] = useState<'Spring' | 'Summer' | 'Fall'>('Fall');
   const [isLocalMode, setIsLocalMode] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +23,8 @@ export const AuthPage = () => {
       name,
       university: "Simon Fraser University",
       major,
-      enrollmentYear: new Date().getFullYear(),
+      enrollmentYear: parseInt(year) || new Date().getFullYear(),
+      startingSeason: season,
     });
   };
 
@@ -29,17 +33,30 @@ export const AuthPage = () => {
       setIsLoading(true);
       setError('');
       const user = await signInWithGoogle();
+      
+      const { loadPlannerFromFirebase } = await import('../services/firebase');
+      const cloudData = await loadPlannerFromFirebase(user.uid);
+      
       setTimeout(() => {
         const state = useCourseStore.getState();
-        if (!state.profile) {
+        
+        if (cloudData && cloudData.profile) {
+          // Hydrate store with cloud data
+          useCourseStore.setState({
+            ...cloudData,
+            // Keep allCourses intact as it comes from JSON/API, not user data
+            allCourses: state.allCourses
+          });
+        } else if (!state.profile) {
           setProfile({
             name: user.displayName || "SFU Student",
             university: "Simon Fraser University",
             major: "Computing Science BSc",
             enrollmentYear: new Date().getFullYear(),
+            startingSeason: "Fall",
           });
         }
-      }, 1500);
+      }, 500);
     } catch (err: unknown) {
       console.error(err);
       setIsLoading(false);
@@ -184,8 +201,9 @@ export const AuthPage = () => {
 
               <form onSubmit={handleLocalSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">First Name</label>
+                  <label htmlFor="first-name" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">First Name</label>
                   <input 
+                    id="first-name"
                     type="text" 
                     value={name}
                     onChange={e => setName(e.target.value)}
@@ -195,18 +213,44 @@ export const AuthPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Major / Program</label>
+                  <label htmlFor="major-select" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Major / Program</label>
                   <select 
+                    id="major-select"
                     value={major}
                     onChange={e => setMajor(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium appearance-none"
                   >
                     <option value="" disabled>Select your program...</option>
-                    <option value="Computing Science BSc">Computing Science BSc</option>
-                    <option value="Data Science BSc">Data Science BSc</option>
-                    <option value="Software Systems BSc">Software Systems BSc</option>
-                    <option value="Open / Undeclared">Open / Undeclared</option>
+                    {Object.keys(degreeTemplates).map(m => (
+                      <option key={m} value={m}>{degreeTemplates[m].name}</option>
+                    ))}
                   </select>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="enrollment-year" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Starting Year</label>
+                    <input 
+                      id="enrollment-year"
+                      type="number" 
+                      value={year}
+                      onChange={e => setYear(e.target.value)}
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="enrollment-season" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Term</label>
+                    <select 
+                      id="enrollment-season"
+                      value={season}
+                      onChange={e => setSeason(e.target.value as any)}
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium appearance-none"
+                    >
+                      <option value="Spring">Spring</option>
+                      <option value="Summer">Summer</option>
+                      <option value="Fall">Fall</option>
+                    </select>
+                  </div>
                 </div>
 
                 <button 

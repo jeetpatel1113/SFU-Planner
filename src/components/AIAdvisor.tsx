@@ -4,7 +4,7 @@ import { askAIAdvisor } from '../services/aiAdvisor';
 import { MessageSquare, X, Send, Bot, User, Loader2 } from 'lucide-react';
 
 export const AIAdvisor = () => {
-  const { allCourses, semesterPlan, completedCourses, batchAssignCoursesToSemester, setHighlightedCourses, aiContext, setAiContext, resetProgress, removeCourses, setCourseCompletion } = useCourseStore();
+  const { allCourses, semesterPlan, completedCourses, batchAssignCoursesToSemester, setHighlightedCourses, aiContext, setAiContext, resetProgress, removeCourses, setCourseCompletion, applyPathway } = useCourseStore();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{role: 'ai' | 'user', text: string}[]>([
     { role: 'ai', text: "Hi! I'm your SFU computing science AI Advisor. Looking to specialize in AI, Software Engineering, or Systems? Ask me anything!" }
@@ -12,6 +12,7 @@ export const AIAdvisor = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const highlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -31,7 +32,7 @@ export const AIAdvisor = () => {
 
     try {
       const draftCourses = semesterPlan["Unassigned"] || [];
-      const { reply, suggestedCourses, highlightedCourses, updatedAiContext, resetPlanner, removeCourses: coursesToRemove, markCompleted, unmarkCompleted } = await askAIAdvisor(userMsg, allCourses, draftCourses, completedCourses, aiContext);
+      const { reply, suggestedCourses, highlightedCourses, updatedAiContext, resetPlanner, removeCourses: coursesToRemove, markCompleted, unmarkCompleted, pathway } = await askAIAdvisor(userMsg, allCourses, draftCourses, completedCourses, aiContext);
       
       setMessages(prev => [...prev, { role: 'ai', text: reply }]);
       
@@ -42,6 +43,13 @@ export const AIAdvisor = () => {
       
       if (highlightedCourses && highlightedCourses.length > 0) {
         setHighlightedCourses(highlightedCourses);
+        
+        if (highlightTimeoutRef.current) {
+          clearTimeout(highlightTimeoutRef.current);
+        }
+        highlightTimeoutRef.current = setTimeout(() => {
+          setHighlightedCourses([]);
+        }, 3000);
       } else {
         setHighlightedCourses([]); // clear highlights if the AI didn't specify any new ones
       }
@@ -69,6 +77,11 @@ export const AIAdvisor = () => {
           setCourseCompletion(unmarkCompleted, false);
           setMessages(prev => [...prev, { role: 'ai', text: `✨ I unmarked ${unmarkCompleted.join(', ')} from your completed courses.` }]);
         }
+
+        if (pathway && pathway.length > 0) {
+          applyPathway(pathway);
+          setMessages(prev => [...prev, { role: 'ai', text: `✨ I have successfully generated and applied your full degree pathway!` }]);
+        }
       }
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : String(err);
@@ -83,6 +96,7 @@ export const AIAdvisor = () => {
       {/* Floating Action Button */}
       {!isOpen && (
         <button 
+          aria-label="Open AI Advisor"
           onClick={() => setIsOpen(true)}
           className="fixed bottom-6 right-6 p-4 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all z-50 flex items-center justify-center group"
         >
@@ -103,9 +117,20 @@ export const AIAdvisor = () => {
                 <p className="text-[10px] text-emerald-400 font-medium">Online • Gemini 1.5</p>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-white transition-colors">
-              <X size={20} />
-            </button>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={() => {
+                  setInput("Please generate my full degree pathway.");
+                  setTimeout(() => document.querySelector<HTMLButtonElement>('button[aria-label="Send message"]')?.click(), 100);
+                }}
+                className="text-[10px] font-bold uppercase tracking-wider bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded"
+              >
+                Generate Pathway
+              </button>
+              <button aria-label="Close AI Advisor" onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-white transition-colors">
+                <X size={20} />
+              </button>
+            </div>
           </div>
 
           <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
@@ -136,6 +161,7 @@ export const AIAdvisor = () => {
             <div className="relative">
               <input 
                 type="text" 
+                aria-label="Ask AI Advisor"
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSend()}
@@ -143,6 +169,7 @@ export const AIAdvisor = () => {
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl pl-4 pr-12 py-3 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-inner"
               />
               <button 
+                aria-label="Send message"
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
                 className="absolute right-2 top-2 p-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 disabled:opacity-50 transition-colors"

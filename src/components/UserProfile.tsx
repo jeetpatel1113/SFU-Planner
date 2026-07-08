@@ -55,7 +55,7 @@ export const UserProfile = ({ isOpen, onClose }: UserProfileProps) => {
             <User size={18} className="text-indigo-400" />
             Account Settings
           </h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors">
+          <button aria-label="Close" onClick={onClose} className="text-slate-400 hover:text-white transition-colors">
             <X size={20} />
           </button>
         </div>

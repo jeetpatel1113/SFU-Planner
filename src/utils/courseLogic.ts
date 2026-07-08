@@ -1,21 +1,43 @@
-import { type Course } from '../types';
+import { type Course, type PrerequisiteNode } from '../types';
+
+export const evaluatePrerequisiteNode = (node: PrerequisiteNode, completedCourseIds: string[]): boolean => {
+  if (typeof node === 'string') {
+    return completedCourseIds.includes(node);
+  }
+  if ('OR' in node) {
+    return node.OR.some(n => evaluatePrerequisiteNode(n, completedCourseIds));
+  }
+  if ('AND' in node) {
+    return node.AND.every(n => evaluatePrerequisiteNode(n, completedCourseIds));
+  }
+  return false;
+};
+
+export const extractAllCoursesFromNode = (node: PrerequisiteNode): string[] => {
+  if (typeof node === 'string') return [node];
+  if ('OR' in node) return node.OR.flatMap(extractAllCoursesFromNode);
+  if ('AND' in node) return node.AND.flatMap(extractAllCoursesFromNode);
+  return [];
+};
 
 /**
  * Checks if a course is unlocked based on completed courses.
- * Realistically, SFU has complex prerequisite rules (e.g. "CMPT 125 OR CMPT 135").
- * For this MVP, we assume `prerequisites` is an array of IDs that ALL must be completed (AND condition).
  */
-export const isCourseUnlocked = (course: Course, completedCourseIds: string[]): boolean => {
+export const isCourseUnlocked = (course: Course, completedCourseIds: string[], waivedCourseIds: string[] = []): boolean => {
+  if (waivedCourseIds.includes(course.id)) {
+    return true;
+  }
+  
   if (!course.prerequisites || course.prerequisites.length === 0) {
     return true;
   }
   
-  // AND condition for all listed pre-reqs
-  return course.prerequisites.every(prereqId => completedCourseIds.includes(prereqId));
+  // Top level is implicitly an AND list
+  return course.prerequisites.every(node => evaluatePrerequisiteNode(node, completedCourseIds));
 };
 
-export const getAvailableCourses = (allCourses: Course[], completedCourseIds: string[]): Course[] => {
+export const getAvailableCourses = (allCourses: Course[], completedCourseIds: string[], waivedCourseIds: string[] = []): Course[] => {
   return allCourses.filter(course => 
-    !completedCourseIds.includes(course.id) && isCourseUnlocked(course, completedCourseIds)
+    !completedCourseIds.includes(course.id) && isCourseUnlocked(course, completedCourseIds, waivedCourseIds)
   );
 };

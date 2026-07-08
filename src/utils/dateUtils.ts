@@ -1,27 +1,25 @@
-export function getFutureSemesters(count: number = 4): string[] {
+export function getFutureSemesters(count: number = 4, startYear?: number, startSeason?: 'Spring' | 'Summer' | 'Fall'): string[] {
   const semesters: string[] = [];
   const now = new Date();
-  const year = now.getFullYear();
+  const year = startYear || now.getFullYear();
   const month = now.getMonth(); // 0-11
-
-  // Determine current semester
-  // Spring: Jan(0) - Apr(3)
-  // Summer: May(4) - Aug(7)
-  // Fall: Sep(8) - Dec(11)
   
   let currentSeasonIndex = 0; // 0=Spring, 1=Summer, 2=Fall
-  if (month >= 4 && month <= 7) currentSeasonIndex = 1;
-  else if (month >= 8) currentSeasonIndex = 2;
+  
+  if (startSeason) {
+    if (startSeason === 'Spring') currentSeasonIndex = 0;
+    else if (startSeason === 'Summer') currentSeasonIndex = 1;
+    else currentSeasonIndex = 2;
+  } else {
+    if (month >= 4 && month <= 7) currentSeasonIndex = 1;
+    else if (month >= 8) currentSeasonIndex = 2;
+  }
 
   const seasons = ["Spring", "Summer", "Fall"];
 
-  // Start calculating from the *next* semester
-  let nextSeasonIndex = currentSeasonIndex + 1;
+  // Start calculating from the provided/current semester
+  let nextSeasonIndex = currentSeasonIndex;
   let nextYear = year;
-  if (nextSeasonIndex > 2) {
-    nextSeasonIndex = 0;
-    nextYear++;
-  }
 
   for (let i = 0; i < count; i++) {
     semesters.push(`${seasons[nextSeasonIndex]} ${nextYear}`);

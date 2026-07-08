@@ -1,5 +1,69 @@
 @import "tailwindcss";
 
+@theme {
+  --color-slate-950: var(--th-slate-950);
+  --color-slate-900: var(--th-slate-900);
+  --color-slate-800: var(--th-slate-800);
+  --color-slate-700: var(--th-slate-700);
+  --color-slate-600: var(--th-slate-600);
+  --color-slate-500: var(--th-slate-500);
+  --color-slate-400: var(--th-slate-400);
+  --color-slate-300: var(--th-slate-300);
+  --color-slate-200: var(--th-slate-200);
+  --color-slate-100: var(--th-slate-100);
+  --color-slate-50: var(--th-slate-50);
+
+  --color-indigo-600: var(--th-indigo-600);
+  --color-indigo-500: var(--th-indigo-500);
+  --color-indigo-400: var(--th-indigo-400);
+  --color-indigo-300: var(--th-indigo-300);
+  --color-indigo-200: var(--th-indigo-200);
+}
+
+:root {
+  /* LIGHT MODE: Indian Palette Theme (Saffron, White, Navy Blue) */
+  --th-slate-950: #ffffff; /* Base background: White */
+  --th-slate-900: #fffbeb; /* Panel bg: Warm off-white / Cream */
+  --th-slate-800: #ffedd5; /* Card bg: Very light saffron tint */
+  --th-slate-700: #fed7aa; /* Borders: Light orange */
+  --th-slate-600: #64748b; /* Muted text */
+  --th-slate-500: #475569;
+  --th-slate-400: #334155;
+  --th-slate-300: #1e293b;
+  --th-slate-200: #172554; /* Headings */
+  --th-slate-100: #0f172a; /* Main text: Dark Navy tint */
+  --th-slate-50: #020617;
+
+  /* Saffron (Orange) accent instead of red */
+  --th-indigo-600: #c2410c; /* Deep saffron */
+  --th-indigo-500: #ea580c; /* Saffron primary */
+  --th-indigo-400: #f97316;
+  --th-indigo-300: #fb923c;
+  --th-indigo-200: #fdba74;
+}
+
+.dark {
+  /* DARK MODE: American Palette (Navy, White, Red) */
+  --th-slate-950: #020617; /* Very deep navy/black */
+  --th-slate-900: #0f172a; /* Deep navy */
+  --th-slate-800: #1e293b; /* Navy */
+  --th-slate-700: #334155; /* Slate */
+  --th-slate-600: #475569;
+  --th-slate-500: #64748b;
+  --th-slate-400: #94a3b8;
+  --th-slate-300: #cbd5e1;
+  --th-slate-200: #e2e8f0;
+  --th-slate-100: #ffffff; /* White font */
+  --th-slate-50: #ffffff;
+
+  /* Old Glory Red accent */
+  --th-indigo-600: #9f163b; /* Dark red */
+  --th-indigo-500: #b31942; /* Old Glory Red primary */
+  --th-indigo-400: #cc1d4b;
+  --th-indigo-300: #df3662;
+  --th-indigo-200: #e66c8d;
+}
+
 @layer base {
   body {
     @apply bg-slate-900 text-slate-100;

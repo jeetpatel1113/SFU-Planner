@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useCourseStore } from '../store/useCourseStore';
 import { motion } from 'framer-motion';
 import { signInWithGoogle } from '../services/firebase';
+import { degreeTemplates } from '../data/degreeTemplates';
 
 export const OnboardingModal = () => {
   const { setProfile } = useCourseStore();
   const [name, setName] = useState('');
   const [major, setMajor] = useState('');
+  const [year, setYear] = useState(new Date().getFullYear().toString());
+  const [season, setSeason] = useState<'Spring' | 'Summer' | 'Fall'>('Fall');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +19,8 @@ export const OnboardingModal = () => {
       name,
       university: "Simon Fraser University",
       major,
-      enrollmentYear: new Date().getFullYear(),
+      enrollmentYear: parseInt(year) || new Date().getFullYear(),
+      startingSeason: season,
     });
   };
 
@@ -29,6 +33,7 @@ export const OnboardingModal = () => {
         university: "Simon Fraser University",
         major: "Computing Science BSc",
         enrollmentYear: new Date().getFullYear(),
+        startingSeason: "Fall",
       });
     } catch (err) {
       console.error(err);
@@ -63,8 +68,9 @@ export const OnboardingModal = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Your Name</label>
+            <label htmlFor="user-name" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Your Name</label>
             <input 
+              id="user-name"
               type="text" 
               value={name}
               onChange={e => setName(e.target.value)}
@@ -74,16 +80,44 @@ export const OnboardingModal = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Concentration / Major</label>
+            <label htmlFor="major-select" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Concentration / Major</label>
             <select 
+              id="major-select"
               value={major}
               onChange={e => setMajor(e.target.value)}
               className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium appearance-none"
             >
               <option value="" disabled>Select your path</option>
-              <option value="Computing Science BSc">Computing Science BSc</option>
-              <option value="Open Space">Open Data / Custom</option>
+              {Object.keys(degreeTemplates).map(major => (
+                <option key={major} value={major}>{degreeTemplates[major].name}</option>
+              ))}
             </select>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="enrollment-year" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Starting Year</label>
+              <input 
+                id="enrollment-year"
+                type="number" 
+                value={year}
+                onChange={e => setYear(e.target.value)}
+                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium"
+              />
+            </div>
+            <div>
+              <label htmlFor="enrollment-season" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Term</label>
+              <select 
+                id="enrollment-season"
+                value={season}
+                onChange={e => setSeason(e.target.value as any)}
+                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium appearance-none"
+              >
+                <option value="Spring">Spring</option>
+                <option value="Summer">Summer</option>
+                <option value="Fall">Fall</option>
+              </select>
+            </div>
           </div>
 
           <button 

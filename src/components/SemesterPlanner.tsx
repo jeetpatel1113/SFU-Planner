@@ -5,7 +5,6 @@ import { useDraggable, useDroppable } from '@dnd-kit/core';
 import { Calendar, Trash2 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { getFutureSemesters } from '../utils/dateUtils';
 
 function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
@@ -67,6 +66,7 @@ const SemesterColumn = ({ semesterId, courseIds }: { semesterId: SemesterId; cou
           <div key={id} className="relative group">
             <DraggableCourse courseId={id} />
             <button 
+              aria-label="Remove course"
               onClick={() => removeCourseFromSemester(id, semesterId)}
               className="absolute right-2 top-2.5 opacity-0 group-hover:opacity-100 p-1 text-slate-400 hover:text-rose-400 transition-opacity"
             >
@@ -96,7 +96,7 @@ export const SemesterPlanner = () => {
     setSelectedCourse('');
   };
 
-  const semestersToRender: string[] = getFutureSemesters(4);
+  const semestersToRender: string[] = Object.keys(semesterPlan).filter(k => k !== "Unassigned");
 
   return (
     <div className="flex flex-col h-full bg-slate-900/50 p-6 overflow-hidden">
@@ -107,6 +107,7 @@ export const SemesterPlanner = () => {
 
       <div className="mb-4 flex gap-2 shrink-0">
         <select 
+          aria-label="Select course to add"
           value={selectedCourse} 
           onChange={e => setSelectedCourse(e.target.value)}
           className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -135,7 +136,7 @@ export const SemesterPlanner = () => {
       </div>
 
       {/* Semesters Grid */}
-      <div className="grid grid-cols-2 grid-rows-2 gap-4 flex-1 min-h-0">
+      <div className="grid grid-cols-2 gap-4 flex-1 min-h-0 overflow-y-auto custom-scrollbar">
         {semestersToRender.map(semId => (
           <SemesterColumn key={semId} semesterId={semId} courseIds={semesterPlan[semId] || []} />
         ))}

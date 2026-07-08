@@ -46,3 +46,59 @@ export const deleteUserAccount = async () => {
     throw err;
   }
 };
+
+export const savePlannerToFirebase = async (uid: string, state: any) => {
+  try {
+    const dataToSave = {
+      profile: state.profile || null,
+      completedCourses: state.completedCourses || [],
+      waivedCourses: state.waivedCourses || [],
+      highlightedCourses: state.highlightedCourses || [],
+      removedCoreCourses: state.removedCoreCourses || [],
+      aiContext: state.aiContext || "",
+      semesterPlan: state.semesterPlan || {}
+    };
+    await import("firebase/firestore").then(({ setDoc, doc }) => 
+      setDoc(doc(db, "users", uid), { plannerData: dataToSave }, { merge: true })
+    );
+  } catch (err) {
+    console.error("Error saving planner to Firebase:", err);
+  }
+};
+
+export const loadPlannerFromFirebase = async (uid: string) => {
+  try {
+    const docSnap = await import("firebase/firestore").then(({ getDoc, doc }) => 
+      getDoc(doc(db, "users", uid))
+    );
+    if (docSnap.exists()) {
+      return docSnap.data().plannerData;
+    }
+  } catch (err) {
+    console.error("Error loading planner from Firebase:", err);
+  }
+  return null;
+};
+
+export const fetchCloudCatalog = async (year: string, term: string) => {
+  try {
+    const { collection, getDocs } = await import("firebase/firestore");
+    const catalogRef = collection(db, "catalog", `${year}_${term}`, "departments");
+    const snapshot = await getDocs(catalogRef);
+    
+    if (snapshot.empty) return null;
+
+    let allCourses: any[] = [];
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      if (data.courses && Array.isArray(data.courses)) {
+        allCourses = allCourses.concat(data.courses);
+      }
+    });
+    
+    return allCourses;
+  } catch (err) {
+    console.error("Error fetching cloud catalog:", err);
+    return null;
+  }
+};

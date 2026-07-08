@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useCourseStore } from '../store/useCourseStore';
+import { PrerequisiteRenderer } from './PrerequisiteRenderer';
 
 const tooltipCache: Record<string, string> = {};
 
@@ -64,6 +66,9 @@ export const CourseTooltipProvider = ({ children }: { children: React.ReactNode 
 const TooltipContent = ({ courseId, x, y }: { courseId: string, x: number, y: number }) => {
   const [description, setDescription] = useState<string | null>(tooltipCache[courseId] || null);
   const [loading, setLoading] = useState(!tooltipCache[courseId]);
+  
+  // Get course data from store for prerequisites
+  const courseData = useCourseStore(state => state.allCourses.find(c => c.id === courseId));
 
   useEffect(() => {
     if (tooltipCache[courseId]) {
@@ -128,6 +133,20 @@ const TooltipContent = ({ courseId, x, y }: { courseId: string, x: number, y: nu
         <p className="leading-relaxed line-clamp-5 text-xs text-slate-300">
           {description}
         </p>
+      )}
+
+      {courseData && courseData.prerequisites && courseData.prerequisites.length > 0 && (
+        <div className="mt-3 pt-3 border-t border-slate-700/50">
+          <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Prerequisites</h5>
+          <div className="flex flex-wrap items-center gap-1 scale-90 origin-left">
+            {courseData.prerequisites.map((p, idx) => (
+              <div key={idx} className="flex items-center gap-1">
+                {idx > 0 && <span className="text-[10px] font-bold text-slate-500 uppercase">AND</span>}
+                <PrerequisiteRenderer node={p} />
+              </div>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

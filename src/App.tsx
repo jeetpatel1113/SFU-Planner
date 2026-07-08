@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useCourseStore } from './store/useCourseStore';
-import { mockCourses, csDegreeTemplate } from './data/mockCourses';
+import sfuCourses from './data/sfuCourses.json';
+import { degreeTemplates } from './data/degreeTemplates';
 import { CourseList } from './components/CourseList';
 import { CourseGraph } from './components/CourseGraph';
 import { SemesterPlanner } from './components/SemesterPlanner';
 import { AuthPage } from './components/AuthPage';
 import { UserProfile } from './components/UserProfile';
 import { AIAdvisor } from './components/AIAdvisor';
+import { PrerequisiteResolverModal } from './components/PrerequisiteResolverModal';
 import { CourseTooltipProvider } from './components/CourseTooltip';
-import { LayoutDashboard, User, LogOut } from 'lucide-react';
-import { auth, db } from './services/firebase';
+import { LayoutDashboard, User, LogOut, Sun, Moon } from 'lucide-react';
+import { auth } from './services/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { 
   DndContext, 
   DragOverlay,
@@ -25,9 +26,24 @@ import {
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 
 function App() {
-  const { profile, initializeCourses, seedDraft } = useCourseStore();
+  const { profile, initializeCourses, seedDraft, allCourses, semesterPlan, completedCourses } = useCourseStore();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') setTheme(saved);
+  }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -60,57 +76,83 @@ function App() {
   };
 
   useEffect(() => {
-    initializeCourses(mockCourses);
-    seedDraft(csDegreeTemplate.coreRequirements);
-  }, [initializeCourses, seedDraft]);
+    const loadCatalog = async () => {
+      // Determine current term based on date
+      const date = new Date();
+      const year = date.getFullYear().toString();
+      const month = date.getMonth() + 1;
+      let term = "fall";
+      if (month >= 1 && month <= 4) term = "spring";
+      else if (month >= 5 && month <= 8) term = "summer";
+
+      // Prefer local JSON data in development so scripts like fetchSFUData take effect immediately
+      if (import.meta.env.DEV) {
+        initializeCourses(sfuCourses as any);
+      } else {
+        const { fetchCloudCatalog } = await import('./services/firebase');
+        const cloudCourses = await fetchCloudCatalog(year, term);
+        
+        if (cloudCourses && cloudCourses.length > 0) {
+          initializeCourses(cloudCourses);
+        } else {
+          // Fallback to static JSON if cloud catalog doesn't exist yet
+          initializeCourses(sfuCourses as any);
+        }
+      }
+      
+      const reqs = profile?.major && degreeTemplates[profile.major] 
+        ? degreeTemplates[profile.major].coreRequirements 
+        : [];
+      seedDraft(reqs);
+    };
+
+    loadCatalog();
+  }, [initializeCourses, seedDraft, profile?.major]);
 
   // Firebase Auto Sync
   useEffect(() => {
+    let syncTimeout: ReturnType<typeof setTimeout>;
+    let unsubscribeStore: () => void;
+
     const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const docRef = doc(db, 'users', user.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          const data = docSnap.data();
+        const { loadPlannerFromFirebase, savePlannerToFirebase } = await import('./services/firebase');
+        const data = await loadPlannerFromFirebase(user.uid);
+        
+        if (data) {
           useCourseStore.setState({
             profile: data.profile || useCourseStore.getState().profile,
             aiContext: data.aiContext || '',
             completedCourses: data.completedCourses || [],
+            waivedCourses: data.waivedCourses || [],
+            highlightedCourses: data.highlightedCourses || [],
+            removedCoreCourses: data.removedCoreCourses || [],
             semesterPlan: data.semesterPlan || useCourseStore.getState().semesterPlan
           });
         } else {
           // Push initial local state to their new cloud profile
-          const state = useCourseStore.getState();
-          await setDoc(docRef, {
-            profile: state.profile,
-            aiContext: state.aiContext,
-            completedCourses: state.completedCourses,
-            semesterPlan: state.semesterPlan
-          }, { merge: true });
+          await savePlannerToFirebase(user.uid, useCourseStore.getState());
+        }
+
+        // Only subscribe to store changes AFTER we have a logged-in user
+        if (!unsubscribeStore) {
+          unsubscribeStore = useCourseStore.subscribe((state) => {
+            clearTimeout(syncTimeout);
+            syncTimeout = setTimeout(() => {
+              savePlannerToFirebase(user.uid, state);
+            }, 1500);
+          });
+        }
+      } else {
+        if (unsubscribeStore) {
+          unsubscribeStore();
         }
       }
     });
 
-    let syncTimeout: ReturnType<typeof setTimeout>;
-    const unsubscribeStore = useCourseStore.subscribe((state) => {
-      const user = auth.currentUser;
-      if (!user) return;
-      
-      clearTimeout(syncTimeout);
-      syncTimeout = setTimeout(async () => {
-        const docRef = doc(db, 'users', user.uid);
-        await setDoc(docRef, {
-          profile: state.profile,
-          aiContext: state.aiContext,
-          completedCourses: state.completedCourses,
-          semesterPlan: state.semesterPlan
-        }, { merge: true });
-      }, 1500);
-    });
-
     return () => {
       unsubscribeAuth();
-      unsubscribeStore();
+      if (unsubscribeStore) unsubscribeStore();
       clearTimeout(syncTimeout);
     };
   }, []);
@@ -122,6 +164,16 @@ function App() {
       </CourseTooltipProvider>
     );
   }
+
+  const allBoardCourseIds = Array.from(new Set([
+    ...Object.values(semesterPlan).flat(),
+    ...completedCourses
+  ]));
+
+  const totalCredits = allBoardCourseIds.reduce((sum, id) => {
+    const course = allCourses.find(c => c.id === id);
+    return sum + (course?.credits || 0);
+  }, 0);
 
   return (
     <CourseTooltipProvider>
@@ -144,9 +196,15 @@ function App() {
         
         {profile && (
           <div className="flex items-center gap-4 text-sm font-medium">
-            <div className="text-slate-400">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg shadow-inner">
+              <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Credits</span>
+              <span className={totalCredits >= 120 ? "text-emerald-400 font-bold text-base" : "text-indigo-400 font-bold text-base"}>
+                {totalCredits} <span className="text-slate-500 font-normal text-xs">/ 120</span>
+              </span>
+            </div>
+
+            <div className="text-slate-400 hidden lg:block">
               User: <span className="text-slate-100">{profile.name}</span>
-              <span className="font-semibold text-indigo-400"> {profile?.major}</span>
             </div>
             <button 
               onClick={() => setIsProfileOpen(true)}
@@ -154,6 +212,13 @@ function App() {
             >
               <User size={16} />
               Profile
+            </button>
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 hover:border-slate-500"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </button>
             <button 
               onClick={async () => {
@@ -199,8 +264,9 @@ function App() {
           ) : null}
         </DragOverlay>
       </DndContext>
-
-        <AIAdvisor />
+      
+      <PrerequisiteResolverModal />
+      <AIAdvisor />
       </div>
     </CourseTooltipProvider>
   );
