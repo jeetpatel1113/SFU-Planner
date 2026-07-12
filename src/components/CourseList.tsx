@@ -153,7 +153,8 @@ export const CourseList = () => {
   useEffect(() => {
     const fetchSuggestions = async () => {
       // Improved regex: Department (2-4 letters) followed by optional space and any alphanumeric sequence
-      const match = search.match(/^([a-zA-Z]{2,4})\s*([a-zA-Z0-9]*)$/);
+      const trimmedSearch = search.trim();
+      const match = trimmedSearch.match(/^([a-zA-Z]{2,4})\s*([a-zA-Z0-9]*)$/);
       if (!match) {
         setSuggestions([]);
         setIsDropdownOpen(false);

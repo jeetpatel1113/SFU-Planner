@@ -1,13 +1,16 @@
 import { type Course } from '../types';
 
-const BASE_URL = 'http://www.sfu.ca/bin/wcm/course-outlines';
+const BASE_URL = 'https://www.sfu.ca/bin/wcm/course-outlines';
 
 // Search across multiple terms to find as many courses as possible
 const TERMS = [
-  { year: '2024', term: 'fall' },
-  { year: '2024', term: 'summer' },
-  { year: '2024', term: 'spring' },
-  { year: '2025', term: 'spring' }
+  { year: '2026', term: 'fall' },
+  { year: '2026', term: 'summer' },
+  { year: '2026', term: 'spring' },
+  { year: '2025', term: 'fall' },
+  { year: '2025', term: 'summer' },
+  { year: '2025', term: 'spring' },
+  { year: '2024', term: 'fall' }
 ];
 
 export interface SFUDepartmentCourse {
